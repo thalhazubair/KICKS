@@ -13,6 +13,8 @@ router.get("/unblockuser/:id",adminController.unblockuser);
 router.get('/category',adminController.getCategory)
 router.get('/addcategory',adminController.addCategory)
 router.post('/addcategory',adminController.postCategory)
+router.get('/editcategory/:id',adminController.editCategory)
+router.post('/posteditcategory/:id',adminController.updateCategory)
 
 router.get('/product',adminController.getProduct)
 router.get('/addproduct',adminController.addProduct)
@@ -20,7 +22,6 @@ router.post('/addproduct',adminController.postProduct)
 
 router.get('/edit',adminController.editProduct)
 router.post('/edit/:name',adminController.updateProduct)
-// router.post('/edit',adminController.editCategory)
 
 router.get('/logout',adminController.getLogout)
 module.exports = router

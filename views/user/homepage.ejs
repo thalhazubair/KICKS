@@ -48,12 +48,12 @@
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#categoryWomen">Women</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#header">Men</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">Shop</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet">Sandals</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet">Basketball</a></li>
-
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#categoryWomen">WOMEN</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#header">MEN</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">SHOP</a></li>
+              <% allCategory.forEach((categories)=>{ %>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+                <%})%>
             </ul>
             <form class="d-flex">
               <a class="text-1000" href="#!">
@@ -132,7 +132,6 @@
         <!-- ============================================-->
         <!-- <section> begin ============================-->
         <section class="py-0">
-  
           <div class="container">
             <div class="row h-100">
               <div class="col-lg-7 mx-auto text-center mt-7 mb-5">
@@ -143,163 +142,20 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
                       <div class="row h-100 align-items-center g-2">
+                        <% allProduct.forEach((product)=>{ %>
                         <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/flat-hill.png" alt="..." />
+                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="/admin/products/<%= product.name%>.jpg" alt="..." />
                             <div class="card-img-overlay ps-0"> </div>
                             <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
+                              <h5 class="fw-bold text-1000 text-truncate"><%= product.name %></h5>
+                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through"></span><span class="text-primary">$<%= product.price %></span></div>
                             </div><a class="stretched-link" href="#"></a>
                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/blue-ring.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Ocean Blue Ring</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wallet.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Brown Leathered Wallet</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wrist-watch.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Silverside Wristwatch</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
+                      <%})%>
                       </div>
                     </div>
-                    <div class="carousel-item" data-bs-interval="5000">
-                      <div class="row h-100 align-items-center g-2">
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/flat-hill.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/blue-ring.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Ocean Blue Ring</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wallet.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Brown Leathered Wallet</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wrist-watch.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Silverside Wristwatch</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3000">
-                      <div class="row h-100 align-items-center g-2">
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/flat-hill.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/blue-ring.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Ocean Blue Ring</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wallet.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Brown Leathered Wallet</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wrist-watch.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Silverside Wristwatch</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="row h-100 align-items-center g-2">
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/flat-hill.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Flat Hill Slingback</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/blue-ring.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Ocean Blue Ring</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wallet.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Brown Leathered Wallet</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="img-fluid h-100" src="user/assets/img/gallery/wrist-watch.png" alt="..." />
-                            <div class="card-img-overlay ps-0"> </div>
-                            <div class="card-body ps-0 bg-200">
-                              <h5 class="fw-bold text-1000 text-truncate">Silverside Wristwatch</h5>
-                              <div class="fw-bold"><span class="text-600 me-2 text-decoration-line-through">$200</span><span class="text-primary">$175</span></div>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                      </div>
+                    
                     </div>
                     <div class="row">
                       <button class="carousel-control-prev" type="button" data-bs-target="#carouselBestDeals" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
@@ -310,7 +166,6 @@
               </div>
               <div class="col-12 d-flex justify-content-center mt-5"> <a class="btn btn-lg btn-dark" href="#!">View All </a></div>
             </div>
-          </div>
           <!-- end of .container-->
   
         </section>
@@ -396,6 +251,7 @@
                   <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="10000">
                       <div class="row h-100 align-items-center g-2">
+
                         <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
                           <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/full-body.png" alt="..." />
                             <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
@@ -405,37 +261,12 @@
                             </div><a class="stretched-link" href="#"></a>
                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/formal-coat.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Ocean Blue Ring</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/ocean-blue.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Brown Leathered Wallet</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/sweater.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Silverside Wristwatch</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="5000">
                       <div class="row h-100 align-items-center g-2">
+
                         <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
                           <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/full-body.png" alt="..." />
                             <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
@@ -445,37 +276,12 @@
                             </div><a class="stretched-link" href="#"></a>
                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/formal-coat.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Ocean Blue Ring</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/ocean-blue.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Brown Leathered Wallet</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/sweater.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Silverside Wristwatch</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                     <div class="carousel-item" data-bs-interval="3000">
                       <div class="row h-100 align-items-center g-2">
+                        
                         <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
                           <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/full-body.png" alt="..." />
                             <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
@@ -485,73 +291,7 @@
                             </div><a class="stretched-link" href="#"></a>
                           </div>
                         </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/formal-coat.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Ocean Blue Ring</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/ocean-blue.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Brown Leathered Wallet</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/sweater.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Silverside Wristwatch</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="carousel-item">
-                      <div class="row h-100 align-items-center g-2">
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/full-body.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Flat Hill Slingback</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/formal-coat.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Ocean Blue Ring</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/ocean-blue.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Brown Leathered Wallet</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
-                        <div class="col-sm-6 col-md-3 mb-3 mb-md-0 h-100">
-                          <div class="card card-span h-100 text-white"><img class="card-img h-100" src="user/assets/img/gallery/sweater.png" alt="..." />
-                            <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse">
-                              <h6 class="text-primary">$175</h6>
-                              <p class="text-400 fs-1">Jumper set for Women</p>
-                              <h4 class="text-light">Silverside Wristwatch</h4>
-                            </div><a class="stretched-link" href="#"></a>
-                          </div>
-                        </div>
+
                       </div>
                     </div>
                     <div class="row">

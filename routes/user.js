@@ -11,8 +11,7 @@ router.get("/signup",userSignup.getSignup)
 
 
 router.post("/signup",userSignup.postSignup)
-router.get("/otpsignup",userSignup.getOtpsignup)
-router.post("/otpsignup",userSignup.getOtpsignup)
+router.post("/otpsignup",userSignup.postOtpsignup)
 
 router.get('/logout',userLogin.getLogout)
 

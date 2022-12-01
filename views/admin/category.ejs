@@ -10,7 +10,6 @@
                         <thead>
                             <tr>
                                 <th scope="col">Category</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Block</th>
                                 <th scope="col">Delete</th>
                             </tr>
@@ -19,10 +18,9 @@
                             <% categories.forEach((categories)=>{ %>
                             <tr>
                                 <td><%= categories.categories %></td>
-                                <td>loading</td>
-                                <td><a href="/admin/blockCategory/<%= categories.category %>">
-                                    <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Block</button></a></td>
-                                <td><a href="/admin/deleteCategory/<%= categories.category %>">
+                                <td><a href="/admin/editcategory/<%= categories._id %>">
+                                    <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Edit</button></a></td>
+                                <td><a href="/admin/deletecategory/<%= categories._id %>">
                                     <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Delete</button></a></td>                               
                             </tr>
                             <%})%>

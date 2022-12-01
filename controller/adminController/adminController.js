@@ -67,10 +67,17 @@ module.exports={
 
     getCategory: async(req,res)=>{
         try{
-            const categories = await category.find();
+            if(req.session.admin){
+                const categories = await category.find();
             if(categories){
                 res.render('admin/category',{categories});
+            } else{
+                res.send('No categories found');
             }
+            } else {
+                res.redirect('/admin/login')
+            }
+            
             }catch{
             console.error();
         }
@@ -98,6 +105,29 @@ module.exports={
             }
         }catch(error){
             res.redirect("admin/addcategory");
+        }
+        
+    },
+
+    editCategory:async(req,res)=>{
+        if(req.session.admin){
+            const id = req.params.id
+             const data = await category.find({_id:id})
+            res.render('admin/editcategory',{data})
+        }else{
+            res.redirect('/admin/login')
+        }
+    },
+
+    updateCategory: async(req,res)=>{
+        try{
+        const id = req.params.id
+        console.log(id);
+        await category.updateOne({_id:id},{$set:{categories:req.body.categories}})
+        console.log("ith")
+        res.redirect('/admin/category')
+        }catch{
+            console.error();
         }
         
     },
@@ -136,8 +166,8 @@ module.exports={
                 })
                 const productData = await newproduct.save()
                 if(productData){
-                    let imagename = productData._id;
-                    console.log(productData),
+                    let imagename = productData.name;
+                    console.log(imagename),
                     image.mv("./public/admin/products/" + imagename + ".jpg",
                       (err) => {
                         if (!err) {
@@ -164,6 +194,7 @@ module.exports={
             res.render('admin/editProduct',{productData,categoriesData})
            }
            else{
+            console.log("ith")
             res.redirect('/admin')
            }
 

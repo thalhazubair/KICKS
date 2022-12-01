@@ -1,22 +1,30 @@
 const User = require("../../model/user/signUpModel")
+const bcrypt = require("bcrypt");
+const category = require("../../model/admin/category");
+const product = require("../../model/admin/products")
+let message;
+
 module.exports={
 
-    getPage:(req,res)=>{
+    getPage: async (req,res)=>{
+        const allCategory = await category.find()
+        const allProduct = await product.find()
         let user = req.session.user
         if(user){
-            res.render('user/homepage')
+            res.render('user/homepage',{ allCategory, allProduct })
         }else{
-            res.render('user/landingpage')
+            res.render('user/landingpage',{ allCategory, allProduct })
         }
     },
 
-    getHome:(req,res)=>{
+    getHome: async (req,res)=>{
+        const allCategory = await category.find()
+        const allProduct = await product.find()
         let user = req.session.user
         if(user){
-
-            res.render('user/homepage')
+            res.render('user/homepage',{ allCategory, allProduct })
         }else{
-            res.render('user/landingpage')
+            res.render('user/landingpage',{ allCategory, allProduct })
         }
     },
 
@@ -29,29 +37,40 @@ module.exports={
         }
     },
 
-    postLogin:(req,res)=>{
-        const {email,password} = req.body
-        User.findOne({email:email, password:password})
-        .then((result)=>{
-            if(result){
-                req.session.user = req.body.email
-                res.redirect('/home')
-                console.log(req.session.user);
+    postLogin: async (req,res)=>{
+        try{
+        const email = req.body.email;
+        const userDetails = await User.findOne({ email:email });
+        if(userDetails){
+            const blocked = userDetails.isBlocked;
+            if(blocked === false){
+                if(userDetails){
+                    const value = await bcrypt.compare(req.body.password,userDetails.password);
+                    if(value){
+                        req.session.user = req.body.email
+                        res.redirect("/home")
+                    }else{
+                        console.log("this")
+                        res.render('user/login')
+                    }
+                }else{
+                    res.render("user/login", {message, err_message: "email not registered",});
+                }
+            }else{
+                res.render('user/login', {message, err_message: "Blocked"});
             }
-            else{
-                res.render('user/login')
-                console.log("invalid Entry");
-            }
-
-        })
-        .catch((err)=>{
-            console.log(err);
-        })
+        }else{
+            res.render("user/login",{ message, err_message: "email or password incorrect"});
+        }
+    } catch {
+        console.error();
+    }
+               
     },
 
     getLogout:(req,res)=>{
         req.session.destroy();
-        res.render('user/login')
+        res.redirect('/')
     }
 
 }

@@ -23,6 +23,9 @@
       
                     <h2>KICKS</h2>
                     <p class="mb-4">YOUR ACCOUNT FOR <br> EVERYTHING</p>
+                    <% if(locals.err_msg) {%>
+                    <p class="text-danger"><%= err_msg %></p>
+                  <%} %>
 
                     <form action="/signup" method="post" onsubmit="return validation()" class="mx-1 mx-md-4">
 

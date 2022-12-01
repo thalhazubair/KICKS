@@ -59,13 +59,13 @@
                 </div>
                 <div class="form-outline mb-4">
                   <div class="form-outline">
-                    <input value="<%= productData.size %>" type="number" id="size" name="size" placeholder="Size" class="form-control" />
+                    <input value="<%= productData.size %>" type="text" id="size" name="size" placeholder="Size" class="form-control" />
                     <label class="form-label" for="size"></label><br>
                   </div>
                 </div>
                 <div class="form-outline mb-4">
                   <div class="form-outline">
-                    <input type="file" id="image" name="image" placeholder="Images" class="form-control" />
+                    <input value="/admin/products/<%= productData.name %>.jpg" type="file" id="image" name="image" placeholder="Images" class="form-control" />
                     <label class="form-label" for="image"></label><br>
                   </div>
                 </div>

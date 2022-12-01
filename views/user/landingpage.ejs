@@ -48,11 +48,12 @@
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#categoryWomen">Women</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#header">Men</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">Shop</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet">Sandals</a></li>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet">Basketball</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium active" aria-current="page" href="#categoryWomen">WOMEN</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#header">MEN</a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#collection">SHOP</a></li>
+              <% allCategory.forEach((categories)=>{ %>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+              <%})%>
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="/login">Login</a></li>
 
             </ul>
