@@ -28,46 +28,44 @@
                   <%} %>
 
                     <form action="/signup" method="post" onsubmit="return validation()" class="mx-1 mx-md-4">
-
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                        <input type="name" name="firstname" id="firstname" placeholder="First Name" class="form-control test" />
-                        <label class="form-label" for="firstname"></label>
-                      </div>
-                      <span id="firstnameError" style="color: red;"></span>
-                      
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                        <input type="name" name="lastname" id="lastname" placeholder="Last Name" class="form-control test" />
-                        <label class="form-label" for="lastname"></label>
-                      </div>
-                      <span id="lastnameError" style="color: red;"></span>
-      
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                      <input type="email" name="email" id="email" placeholder="Email" class="form-control test" />
-                      <label class="form-label" for="email"></label>
-                    </div>
-                    <span id="emailError" style="color: red;"></span>
-
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                        <input type="number" name="number" id="number" placeholder="Phone Number" class="form-control test" />
-                        <label class="form-label" for="number"></label>
-                   </div>
-                   <span id="numberError" style="color: red;"></span>
-      
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                      <input type="password" name="password" id="password" placeholder="Password" class="form-control test" />
-                      <label class="form-label" for="password"></label>
-                    </div>
-                    <span id="passwordError" style="color: red;"></span>
                     
-                    <div class="form-outline form-white d-flex justify-content-center pb-4">
-                        <input type="password" name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" class="form-control test" />
+                      <div class="form-group d-flex align-items-center justify-content-center pt-1 pb-3">
+                        <input type="name" name="name" id="name" placeholder="Name" class="form-control test mb-2" />
+                        <label class="form-label" for="name"></label>
+                        <span id="nameError" style="color: red; position: absolute; top: -20px; left: -10;"></span>
+                      </div>
+                    
+                    
+                      <div class="form-group d-flex align-items-center justify-content-center pt-1 pb-3"> <input type="email" name="email"
+                          id="email" placeholder="Email" class="form-control test mb-2" />
+                        <label class="form-label" for="email"></label>
+                        <span id="emailError" style="color: red; position: absolute; top: -20px; left: -10;"></span>
+                    
+                      </div>
+                    
+                      <div class="form-group d-flex align-items-center justify-content-center pt-1 pb-3"> <input type="number" name="number"
+                          id="number" placeholder="Phone Number" class="form-control test mb-2" />
+                        <label class="form-label" for="number"></label>
+                        <span id="numberError" style="color: red; position: absolute; top: -20px; left: -10;"></span>
+                    
+                      </div>
+                    
+                      <div class="form-group d-flex align-items-center justify-content-center pt-1 pb-3"> <input type="password"
+                          name="password" id="password" placeholder="Password" class="form-control test mb-2" />
+                        <label class="form-label" for="password"></label>
+                        <span id="passwordError" style="color: red; position: absolute; top: -20px; left: -10;"></span>
+                    
+                      </div>
+                    
+                      <div class="form-group d-flex align-items-center justify-content-center pt-1 pb-3"> <input type="password"
+                          name="confirmpassword" id="confirmpassword" placeholder="Confirm Password" class="form-control test mb-2 />
                         <label class="form-label" for="confirmpassword"></label>
-                    </div>
-                      <span id="confirmpasswordError" style="color: red;"></span>
-  
-      
-                    <button class="btn btn-outline-dark btn-lg test" type="submit" value="Submit">JOIN US</button>
-                </form>
+                        <span id="confirmpasswordError" style="color: red; position: absolute; top: -20px; left: -10;"></span>
+                    
+                      </div>
+                    
+                      <button class="btn btn-outline-dark btn-lg test" type="submit" value="Submit">JOIN US</button>
+                    </form>
                   </div>
       
                   <div>
@@ -86,29 +84,21 @@
       <script>
         function validation(){
         let flag=0
-        let firstname= document.getElementById('firstname').value.trim()
-        let lastname = document.getElementById('lastname').value.trim()      
+        let name= document.getElementById('name').value.trim()
         let email = document.getElementById('email').value.trim()
         let number = document.getElementById('number').value.trim()
         let password = document.getElementById('password').value.trim()
         let confirmpassword = document.getElementById('confirmpassword').value.trim()
       
       
-        if(firstname==''){
-          document.getElementById('firstnameError').innerHTML="Name Required"
+        if(name==''){
+          document.getElementById('nameError').innerHTML="Name Required"
           flag=1
-        }else if(firstname.length<=2){
-          document.getElementById('firstnameError').innerHTML="Enter atleast 3 character"
+        }else if(name.length<=2){
+          document.getElementById('nameError').innerHTML="Enter atleast 3 character"
           flag=1
         }else{
-          document.getElementById('firstnameError').innerHTML=""
-        }
-      
-        if(lastname==''){
-            document.getElementById('lastnameError').innerHTML="last name Required"
-            flag=1
-        }else{
-            document.getElementById('lastnameError').innerHTML=""
+          document.getElementById('nameError').innerHTML=""
         }
 
         if(email==''){
@@ -122,8 +112,8 @@
             document.getElementById('numberError').innerHTML="number Required"
             flag=1
         }
-        else if(number.length<=9){
-          document.getElementById('numberError').innerHTML="incorrect"
+        else if(number.length<=9 || number.length>=11){
+          document.getElementById('numberError').innerHTML="not valid mobile number"
           flag=1
         }else{
             document.getElementById('numberError').innerHTML=""

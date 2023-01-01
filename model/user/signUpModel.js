@@ -12,18 +12,13 @@ var validateName = function(name) {
 
 const SignUpSchema = new Schema({
 
-    firstname:{
+    name:{
         type:String,
         required:true,
         validate: [validateName, 'please fill a valid name'],
         match:[/^[a-zA-Z]+$/, 'please fill a valid name']
     },
-    lastname:{
-        type:String,
-        required:true,
-        validate: [validateName, 'please fill a valid name'],
-        match:[/^[a-zA-Z]+$/, 'please fill a valid name']
-    },
+   
     email: {
         type: String,
         unique: true,
@@ -35,6 +30,26 @@ const SignUpSchema = new Schema({
         type: Number,
         unique: true,
     },
+    
+    addressDetails:[
+        {
+          housename:{
+            type:String,
+          },
+          street:{
+            type:String,
+          },
+          city:{
+            type:String,
+          },
+          state:{
+            type:String,
+          },
+          pincode:{
+            type:Number,
+          },
+        },
+      ],
     password:{
         type:String,
         required:true

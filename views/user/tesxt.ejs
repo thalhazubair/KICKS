@@ -1,0 +1,306 @@
+<%- include('../partials/user_navbar.ejs') %>
+
+  <section class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcrumb__text">
+            <h4>Check Out</h4>
+            <div class="breadcrumb__links">
+              <a href="./index.html">Home</a>
+              <a href="./shop.html">Shop</a>
+              <span>Check Out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- check out section -->
+  <div class="checkout-section mt-150 mb-150">
+    <div class="container">
+      <div class="row">
+
+
+        <div class="col-md-8 order-md-1">
+          <section>
+            <div class="container">
+              <form id="checkout">
+
+
+                <ul class="checkout__total__all">
+                  <h4 class="order__title pb-3">Your order</h4>
+                  <div class="checkout__order__products pl-4">Product <span>Total</span></div>
+                  <ul class="checkout__total__products">
+                    <% allProduct.forEach((product,index)=>{ %>
+                      <li>
+                        <%= index + 1%>. <%= product.productDetail.name %><span>$<%= product.productPrice %></span>
+                      </li>
+                      <%})%>
+                  </ul>
+
+                  <div class="cart__discount">
+                    <h6>Discount codes</h6>
+
+                    <input type="text" name="couponName" id="coupon" placeholder="Coupon code">
+                    <button type="button" id="coupons" onclick="check()">Apply</button>
+                    
+                  </div>
+                  <span id="message"></span>
+                  <li>Subtotal <span>$<%= sum %></span></li>
+                  <li>Shipping <span style="color: black;">FREE</span></li>
+
+                  <li>Total<span id="total">
+                      <%= sum %>
+                    </span><span>$</span>
+                    <input type="hidden" name="total" id="final">
+                  </li>
+                </ul>
+                <label class="col-xs-3 control-label">Select Shipping Address</label>
+
+                <div class="d-flex">
+                  <select class="form-select1 mt-2" required name="address" style="width: 20rem">
+                    <% useraddressData.forEach((address)=>{%>
+                      <option name="address">
+                        <%= address.housename %>,<%= address.street%>,<%= address.city %>,<%=address.state %>,<%=
+                                  address.pincode %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+
+                <div class="d-block my-3">
+
+                  <div class="custom-control custom-radio">
+                    <input id="credit" name="paymentMethod" type="radio" value="COD" class="custom-control-input"
+                      checked required />
+                    <label class="custom-control-label" for="credit">COD</label>
+                  </div>
+
+                  <div class="custom-control custom-radio">
+                    <input id="debit" name="paymentMethod" type="radio" value="Online" class="custom-control-input"
+                      required />
+                    <label class="custom-control-label" for="debit">Online</label>
+                  </div>
+
+
+                  <button type="submit" value="submit" class="btn btn-secondary mt-5">
+                    Place order
+                  </button>
+
+                </div>
+              </form>
+
+
+
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo">
+                Add new address
+              </button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">
+                        Add new Address
+                      </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/addNewAddress" method="post">
+                      <div class="modal-body">
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Housename:</label>
+                          <input required type="text" class="form-control" id="housename" name="housename" />
+                          <p id="houseError" style="color: red"></p>
+                        </div>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">street</label>
+                          <input required type="text" class="form-control" id="street" name="street" />
+                          <p id="areaError" style="color: red"></p>
+                        </div>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">city</label>
+                          <input required type="text" class="form-control" id="city" name="city" />
+                          <p id="landmarkError" style="color: red"></p>
+                        </div>
+                        <div class="mb-3">
+                          <div class="row">
+
+
+                            <div class="col-md-6 mb-3">
+                              <label for="lastName">State</label>
+                              <input required type="text" class="form-control" id="state" name="state" />
+                              <p id="pincodeError" style="color: red"></p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label for="firstName">Post</label>
+                              <input required type="text" class="form-control" id="pincode" name="pincode" />
+                              <p id="stateError" style="color: red"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                          Close
+                        </button>
+                        <button type="submit" value="submit" class="btn btn-primary">
+                          Add
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <!-- end check out section -->
+
+  <%- include('../partials/user_footer.ejs') %>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      $("#checkout").submit((e) => {
+        e.preventDefault();
+
+        $.ajax({
+          url: "/placeOrder",
+          method: "post",
+          data: $("#checkout").serialize(),
+          success: (response) => {
+            if (response.success) {
+              location.href = "/ordersuccess";
+            } else {
+              razorPay(response);
+            }
+          },
+        });
+      });
+
+      function razorPay(order) {
+        var options = {
+          key: "rzp_test_KZoEOF0tWJGBnX", // Enter the Key ID generated from the Dashboard
+          amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          currency: "INR",
+          name: "Kicks",
+          description: "Test Transaction",
+          image: "/admin/products/adddias 123.jpg",
+          order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          handler: function (response) {
+            verifyPayment(response, order);
+          },
+          prefill: {
+            name: "Thalha",
+            email: "thalhaz999@gmail.com",
+            contact: "9999999999",
+          },
+          notes: {
+            address: "Razorpay Corporate Office",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on("payment.failed", function (response) {
+          location.href = "/ordersuccess";
+        });
+        rzp1.open();
+      }
+
+      function verifyPayment(payment, order) {
+        $.ajax({
+          url: "/verifypayment",
+          data: {
+            payment,
+            order,
+          },
+          method: "post",
+          success: (response) => {
+            if (response.success) {
+              console.log("succes");
+              location.href = "/ordersuccess";
+            } else {
+              console.log("fail");
+              location.href = "/cart";
+            }
+          },
+        });
+      }
+
+      function check() {
+        let coupon = document.getElementById("coupon").value;
+        let total = document.getElementById("total").innerHTML;
+        $.ajax({
+          url: '/checkCoupon',
+          data: {
+            coupon,
+            total
+          },
+          method: 'post',
+          success: (response) => {
+            if (response.user) {
+              Swal.fire({
+                title: "Coupon already used!",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.coupon) {
+              Swal.fire({
+                title: "Coupon Applied!",
+                icon: "success",
+                confirmButtonText: "continue",
+              }).then(() => {
+                $("#message").text("Coupon applied successfully!").css("color", "green");
+                document.getElementById("total").innerHTML = response.number - response.discountAmount;
+                document.getElementById("final").value = response.number - response.discountAmount;
+                document.getElementById("coupons").disabled = true;
+                
+              })
+            } else if (response.coupons) {
+              Swal.fire({
+                title: "Coupon Applied!",
+                icon: "success",
+                confirmButtonText: "continue",
+              }).then(() => {
+                $("#message").text("Coupon applied successfully!").css("color", "green");
+                document.getElementById("total").innerHTML = response.number - response.discountAmount;
+                document.getElementById("final").value = response.number - response.discountAmount;
+                document.getElementById("coupons").disabled = true;
+              })
+            } else if (response.invalid) {
+              Swal.fire({
+                title: "invalid Coupon",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.expiry) {
+              Swal.fire({
+                title: "Coupon expired",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.purchase) {
+              Swal.fire({
+                title: "Minimum purchase 100!",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            }
+          }
+        })
+      }
+    </script>

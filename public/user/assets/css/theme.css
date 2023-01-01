@@ -17344,6 +17344,10 @@ section {
   padding-bottom: 4rem;
 }
 
+section#categoryWomen {
+  padding-top: 0rem;
+}
+
 @media (min-width: 992px) {
   section {
     padding-top: 7.5rem;

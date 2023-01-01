@@ -1,0 +1,106 @@
+<%- include('../partials/user_navbar.ejs') %>
+
+      <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <% if(allProduct.length===0){ %>
+      <center class="col-xl-12 col-md-6 col-sm-4">
+        <h1 style="color: red">Sorry your cart is empty</h1>
+        <img class="image-fluid col-xl-12 col-md-6 col-sm-4 mt-5" src="https://alphapharmaexhibitions.com/images/cartempty1.png"
+          alt="" style="width: 14rem" /><br />
+        <a class="btn btn-succes" href="/shop" style="
+                              margin-top: 17px;
+                              color: green;
+                              border: solid green;
+                            ">SHOP NOW</a>
+      </center>
+      <% }else{ %>
+    
+      <section class="shopping-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% allProduct.forEach((product)=>{ %>
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img style="width:50px; height:50px" src="/admin/products/<%= product.productDetail.name %>.jpg" alt="">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6><%= product.productDetail.name %></h6>
+                                        </div>
+                                    </td>
+                             
+                                    <td class="quantity__item">
+                                        <div class="quantity">  
+                                            <div class="container">
+                                                <% if (product.productQuantity > 1) { %>
+                                                <input type="button" class="mx-1" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
+                                                <% } else { %>
+                                                    <input type="button" disabled class="mx-1" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
+                                                    <% } %>
+                                                <input type="number" name="quantity" value="<%= product.productQuantity %>" maxlength="2" max="10" size="1" id="quantity" min="1" pattern="\d*" />
+                                                <input type="button" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',1)" value="+" min="1"/>
+                                                </div>
+                                             </div>
+                                    </td>
+                           
+                                    <td class="cart__price">$<%= product.productDetail.price %></td>
+                                    <td class="cart__close"><a href="" onclick="return removeProduct('<%= product._id %>','<%= product.productDetail._id %>');"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                      </svg></a></td>
+                                </tr>
+                            <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                            <div class="continue__btn">
+                                <a href="/shop">Continue Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    
+                    <div class="cart__total">
+                        <h6>Cart total</h6>
+                        <ul>
+                            <li>Total <span>$ <%= sum %></span></li>
+                        </ul>
+                        <a href="/checkout" class="primary-btn">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <% } %>
+    <!-- Shopping Cart Section End -->
+
+    <%- include('../partials/user_footer.ejs') %>

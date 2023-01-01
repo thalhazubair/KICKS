@@ -1,0 +1,316 @@
+<%- include('../partials/adminPartial.ejs') %>
+
+
+ <!-- Sale & Revenue Start -->
+ <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-line fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today Sale</p>
+                    <h6 class="mb-0">$<%= totalAmountToday %></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Sale</p>
+                    <h6 class="mb-0">$<%= totalAmount %></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-area fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today Order</p>
+                    <h6 class="mb-0"><%= todayOrder %></h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-chart-pie fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Order</p>
+                    <h6 class="mb-0"><%= allOrders %></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sale & Revenue End -->
+
+ <!-- Chart Start -->
+ <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Single Line Chart</h6>
+                <input type="hidden" value="<%= cashOnDelivery %>" id="cod" />
+                <input type="hidden" value="<%= onlinePayment %>" id="razorpay"/>
+                <canvas id="line-chart"></canvas>
+            </div>
+        </div>
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Single Line Chart</h6>
+                <input type="hidden" value="<%= shipped %>" id="shipped" />
+                <input type="hidden" value="<%= delivered %>" id="delivered"/>
+                <input type="hidden" value="<%= cancelled %>" id="cancelled" />
+                <input type="hidden" value="<%= pending %>" id="pending"/>
+                <canvas id="status-chart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Chart End -->
+
+ <!-- Recent Sales Start -->
+ <div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Sales Report</h6>
+            
+        </div>
+
+        <form action="/admin/salesFilter" method="post" class="d-flex">
+          <div class="justify-content-center">
+            <label for="from">From:</label>
+            <input type="date" name="from" class="form-control bg-white" />
+          </div>
+          <div class="justify-content-center ml-2">
+            <label for="to">To:</label>
+            <input type="date" name="to" class="form-control bg-white" />
+            
+             
+              <button
+                type="submit"
+                class="btn btn-outline-light mb-2 mt-2 d-flex align-items-center"
+                style="border-radius: 10px; background-color: #d1dce5;">
+                <span class="fa fa-search"></span>
+              </button>
+        
+          </div>
+        </form>
+        
+        <div  class="table-responsive html-content">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-success">
+                        <th scope="col">Order Date</th>
+                        <th scope="col">name</th>
+                        <th scope="col">Payment<br>Method</th>
+                        <th scope="col">Payment<br>Status</th>
+                        <th scope="col">Order<br>Status</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <% data.forEach((order)=>{ %>
+                        <td><%= order.orderDate %></td>
+                        <td><%= order.name %></td>
+                        <td><%= order.paymentMethod %></td>
+                        <td><%= order.paymentStatus %></td>
+                        <td><%= order.orderStatus %></td>
+                        <td> $<%= order.totalAmount %></td>
+                    </tr>
+                    <%})%>
+                </tbody>
+            </table>
+            <% data.forEach((order)=>{ %>
+                <div id="modalRegister-<%= order._id %>" class="modal fade" role="dialog">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/admin/changeStatus/<%= order._id %>" method="post">
+                          <div class="mb-3">
+                            <label for="recipient-name" name="orderStatus" class="col-form-label">
+                              Order Status
+                            </label>
+                            <select class="form-select" name="orderStatus" aria-label="Default select example">
+                              <option selected>
+                                <%= order.orderStatus %>
+                              </option>
+                              <option value="pending" name="orderStatus">Pending</option>
+                              <option value="shipped" name="orderStatus">Shipped</option>
+                              <option value="delivered" name="orderStatus">Delivered</option>
+                              <option value="Cancelled" name="orderStatus">Cancelled</option>
+                            </select>
+                          </div>
+                          <div class="mb-3">
+                            <label for="message-text" name="paymentStatus" class="col-form-label">Payment Status</label>
+                            <select class="form-select" name="paymentStatus" aria-label="Default select example">
+                              <option selected>
+                                <%= order.paymentStatus %>
+                              </option>
+                              <option value="not paid" name="paymentStatus">not paid</option>
+                              <option value="paid" name="paymentStatus">paid</option>
+                            </select>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="submit" value="submit" class="btn btn-primary">
+                              confirm
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+      </div>
+      <button class="mt-3" onclick="CreatePDFfromHTML()">Generate PDF</button>
+      <button class="mt-3"  onclick="downloadExcel()">Download Excel</button>
+    </div>
+</div>
+<!-- Recent Sales End -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
+<script>
+
+function CreatePDFfromHTML() {
+    var HTML_Width = $(".html-content").width();
+    var HTML_Height = $(".html-content").height();
+    var top_left_margin = 15;
+    var PDF_Width = HTML_Width + (top_left_margin * 2);
+    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+    var canvas_image_width = HTML_Width;
+    var canvas_image_height = HTML_Height;
+
+    var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+
+    html2canvas($(".html-content")[0]).then(function (canvas) {
+        var imgData = canvas.toDataURL("image/jpeg", 1.0);
+        var pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
+        pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
+        for (var i = 1; i <= totalPDFPages; i++) { 
+            pdf.addPage(PDF_Width, PDF_Height);
+            pdf.addImage(imgData, 'JPG', top_left_margin, -(PDF_Height*i)+(top_left_margin*4),canvas_image_width,canvas_image_height);
+        }
+        pdf.save("Your_PDF_Name.pdf");
+        $(".html-content");
+    });
+}
+</script>
+
+<script>
+  $("#kt_daterangepicker_1").daterangepicker();
+
+</script>
+
+<script>
+   let cod = document.getElementById("cod").value;
+  let razorpay = document.getElementById("razorpay").value;
+  var ctx6 = document.getElementById("line-chart").getContext("2d");
+  var myChart6 = new Chart(ctx6, {
+    type: "bar",
+    data: {
+      labels: ["COD", "Razorpay"],
+      datasets: [
+        {
+          backgroundColor: ["#C2C9C8", "#515454"],
+          data: [cod, razorpay],
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+    },
+  });
+</script>
+<script>
+  let shipped = document.getElementById("shipped").value;
+ let delivered = document.getElementById("delivered").value;
+ let cancelled = document.getElementById("cancelled").value;
+ let pending = document.getElementById("pending").value;
+ var ctx6 = document.getElementById("status-chart").getContext("2d");
+ var myChart6 = new Chart(ctx6, {
+   type: "bar",
+   data: {
+     labels: ["Shipped", "Deliverd","Cancelled","Pending"],
+     datasets: [
+       {
+         backgroundColor: ["#C2C9C8", "#515454","#C2B9C5","#C3E9C2" ],
+         data: [shipped, delivered,cancelled,pending],
+       },
+     ],
+   },
+   options: {
+     responsive: true,
+   },
+ });
+</script>
+
+<script>
+const rows = document.querySelectorAll('table tbody tr');
+const data = [];
+
+for (const row of rows) {
+  const cells = row.querySelectorAll('td');
+  const record = {};
+
+
+  record.name = cells[1].textContent;
+  record.paymentMethod = cells[2].textContent;
+  record.paymentStatus = cells[3].textContent;
+  record.orderStatus = cells[4].textContent;
+  record.amount = cells[5].textContent;
+
+  data.push(record);
+}
+
+const formattedData = data.map((record) => {
+  const formattedRecord = {};
+
+  
+  formattedRecord.name = record.name;
+  formattedRecord.paymentMethod = record.paymentMethod;
+  formattedRecord.paymentStatus = record.paymentStatus;
+  formattedRecord.orderStatus = record.orderStatus;
+  formattedRecord.amount = record.amount;
+
+  return formattedRecord;
+});
+
+
+const header = ['Name', 'Payment Method', 'Payment Status', 'Order Status', 'Amount'];
+const rowss = formattedData.map((record) => [
+  
+  record.name,
+  record.paymentMethod,
+  record.paymentStatus,
+  record.orderStatus,
+  record.amount
+]);
+
+const csvContent =
+  'data:text/csv;charset=utf-8,' +
+  header.join(',') +
+  '\n' +
+  rowss.map((row) => row.join(',')).join('\n');
+
+
+function downloadExcel(){
+  
+const encodedUri = encodeURI(csvContent);
+const link = document.createElement('a');
+link.href = encodedUri;;
+link.download = 'orders.csv';
+link.click();
+}
+</script>

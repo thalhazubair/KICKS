@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>KICKS</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/user/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:3000/user/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:3000/user/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:3000/user/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="http://localhost:3000/user/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="user/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="http://localhost:3000/user/assets/css/theme.css" rel="stylesheet">
+
+     <!-- Css Styles -->
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/bootstrap.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/elegant-icons.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/magnific-popup.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/nice-select.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/owl.carousel.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/slicknav.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/style.css" type="text/css">
+
+
+
+  </head>
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+        <div>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-inline-flex" href="/"><span class="text-1000 fs-0 fw-bold ms-2">KICKS</span></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/shop">SHOP</a></li>
+              <% allCategory.forEach((categories)=>{ %>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+                <%})%>
+            </ul>
+            <form class="d-flex">
+              <a class="text-1000" href="/cart">
+                <svg class="feather feather-shopping-cart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+              </a>
+                <a class="text-1000" href="#!">
+                <svg class="feather feather-search me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </a>
+                <a class="text-1000" href="/getprofile">
+                <svg class="feather feather-user me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </a>
+                <a class="text-1000" href="/wishlist">
+                <svg class="feather feather-heart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </a>
+              <a class="text-1000" href="/logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+              </a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <section class="gradient-custom">
+        <div class="container py-5 h-100">
+            <div>
+                <h6 class="mb-0">
+                    <a href="#" class="text-body text-decoration-none"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Back to orders</a>
+                </h6>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="card mt-3" style="border-radius: 10px">
+                        <%userdata.addressDetails.forEach((address)=>{%>
+                            <div class="card-body p-4">
+                                <div class="card shadow-0 border mb-4">
+                                    <div class="card-body">
+                                        <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1" />
+                                        <div class="d-flex justify-content-between pt-2">
+                                            <p class="fw-bold mb-0 text-center">Address Details</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between pt-2">
+                                            <p class="text-muted mb-0">House Name : <%=address.housename%>
+                                            </p>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <p class="text-muted mb-0">
+                                                Street : <%=address.street%><br>City : <%=address.city%><br> State
+                                                        : <%=address.state%> <br>
+                                                        Pincode : <%=address.pincode%>
+                                            </p>
+                                            <div>
+                                                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                                                    data-target="#exampleModal-<%=address._id%>">
+                                                    Edit address
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal-<%=address._id%>" tabindex="-1"
+                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Add New
+                                                                    Address</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/editAddress/<%=address._id%>?_method=PATCH" method="post">
+                                                                    <div class="modal-body">
+                                                                        <div class="mb-3">
+                                                                            <label for="recipient-name"
+                                                                                class="col-form-label">Housename:</label>
+                                                                            <input required type="text"
+                                                                                class="form-control" id="housename"
+                                                                                name="housename"
+                                                                                value="<%=address.housename%>" />
+                                                                            <p id="houseError" style="color: red"></p>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="recipient-name"
+                                                                                class="col-form-label">Street:</label>
+                                                                            <input required type="text"
+                                                                                class="form-control" id="street"
+                                                                                name="street" value="<%=address.street%>" />
+                                                                            <p id="areaError" style="color: red"></p>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <label for="recipient-name"
+                                                                                class="col-form-label">City:</label>
+                                                                            <input required type="text"
+                                                                                class="form-control" id="city"
+                                                                                name="city" value="<%=address.city%>" />
+                                                                            <p id="landmarkError" style="color: red">
+                                                                            </p>
+                                                                        </div>
+                                                                        <div class="mb-3">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6 mb-3">
+                                                                                    <label
+                                                                                        for="firstName">State</label>
+                                                                                    <input required type="text"
+                                                                                        class="form-control"
+                                                                                        id="state" name="state" value="<%=address.state%>" />
+                                                                                    <p id="stateError"
+                                                                                        style="color: red"></p>
+                                                                                </div>
+                                                                                <div class="col-md-6 mb-3">
+                                                                                    <label for="lastName">Pincode</label>
+                                                                                    <input required type="text"
+                                                                                        class="form-control" id="pincode"
+                                                                                        name="pincode" value="<%=address.pincode%>" />
+                                                                                    <p id="pincodeError"
+                                                                                        style="color: red"></p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">
+                                                                            Close
+                                                                        </button>
+                                                                        <button type="submit" value="submit"
+                                                                            class="btn btn-primary">
+                                                                            Save Changes
+                                                                        </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1-<%=address._id%>">
+                                                    Delete
+                                                </button>
+                                                
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal1-<%=address._id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete Address</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        Are yo sure to delete the address?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <a href="/deleteaddress/<%=address._id%> "><button type="button" class="btn btn-primary">Delete</button></a>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <%- include('../partials/user_footer.ejs') %>

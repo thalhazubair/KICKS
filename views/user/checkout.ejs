@@ -1,0 +1,354 @@
+<%- include('../partials/user_navbar.ejs') %>
+
+  <section class="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="breadcrumb__text">
+            <h4>Check Out</h4>
+            <div class="breadcrumb__links">
+              <a href="./index.html">Home</a>
+              <a href="./shop.html">Shop</a>
+              <span>Check Out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkout Section Begin -->
+  <section class="checkout spad">
+    <div class="container">
+      <div class="checkout__form">
+        <form action="/placeOrder" method="post" id="checkout">
+          <div class="row">
+            <div class="col-lg-8 col-md-6">
+
+              <div class="col-md-9 justify-content-center">
+                <div class="card card-custom pb-4">
+                  <div class="card-body mt-0 mx-5">
+                    <div class="text-center mb-3 pb-2 mt-3">
+                      <h4 style="color: #495057 ;">Delivery Details</h4>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="text" name="addressname" id="name" placeholder="name" class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="nameError" style="color: red"></p>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="number" name="addressnumber" id="number" placeholder="mobile"
+                            class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="numberError" style="color: red"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="text" name="housename" id="housename" placeholder="housename"
+                            class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="housenameError" style="color: red"></p>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="text" name="street" id="street" placeholder="street" class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="streetError" style="color: red"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="text" name="city" id="city" placeholder="city" class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="cityError" style="color: red"></p>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="text" name="state" id="state" placeholder="state" class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="stateError" style="color: red"></p>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-outline">
+                          <input type="number" name="pincode" id="pincode" placeholder="postcode" class="form-control">
+                          <label class="form-label" for="form7Example3"></label>
+                          <p id="pincodeError" style="color: red"></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <% useraddressData.forEach((data)=>{ %>
+              <div class="col-md-9 justify-content-center">
+                <div class="card card-custom pb-4">
+                  <div id="shipaddress" class="card-body mt-0 mx-5">
+                    <div class="text-center mb-3 pb-2 mt-3">
+                      <h4 style="color: #495057 ;">Recent Address</h4>
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="hidden" name="shipaddressname" id="name" value="<%= data.addressname %>" class="form-control">
+                          <p class="text-muted mb-0"><%= data.addressname %></p>
+                        </div>
+                      </div>
+                      
+                        <div class="form-outline">
+                          <input type="hidden" name="shipaddressnumber" id="number" value="<%= data.addressnumber %>"class="form-control">
+                          <p class="text-muted mb-0"><%= data.addressnumber %></p>
+                        </div>
+                      
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="hidden" name="shiphousename" id="housename" value="<%= data.housename %>" class="form-control">
+                          <p class="text-muted mb-0"><%= data.housename %></p>
+                        </div>
+                      </div>
+                      
+                        <div class="form-outline">
+                          <input type="hidden" name="shipstreet" id="street" value="<%= data.street %>" class="form-control">
+                          <p class="text-muted mb-0"><%= data.street %></p>
+                        </div>
+                    
+                    </div>
+                    <div class="row mb-1">
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="hidden" name="shipcity" id="city" value="<%= data.city %>" class="form-control">
+                          <p class="text-muted mb-0"><%= data.city %>,<%= data.state %></p>
+                        </div>
+                      </div>
+
+                      <div class="col">
+                        <div class="form-outline">
+                          <input type="hidden" name="shipstate" id="state" value="<%= data.state %>" class="form-control">
+                          <p class="text-muted mb-0"></p>
+                        </div>
+                      </div>
+                     
+                        <div class="form-outline">
+                          <input type="hidden" name="shippincode" id="pincode" value="<%= data.pincode %>" class="form-control">
+                          <p class="text-muted mb-0"><%= data.pincode %></p>
+                        </div>
+                      </div>
+                
+                    <div class="d-flex align-items-center float-right">
+                      <input type="radio" name="shipaddress" value="<%= data._id %>">                      <span class="badge bg-light text-dark" >Ship to this address</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%})%>
+
+              <div class="form-check mt-2">
+                <input class="form-check-input" type="checkbox" value="permanentAddress" id="checkbox"
+                  name="checkbox" />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Use permanentAddress
+                </label>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+
+              <div class="checkout__order">
+
+                <h4 class="order__title">Your order</h4>
+                <div class="checkout__order__products pl-4">Product <span>Total</span></div>
+                <ul class="checkout__total__products">
+                  <% allProduct.forEach((product,index)=>{ %>
+                    <li>
+                      <%= index + 1%>. <%= product.productDetail.name %><span>$<%= product.productPrice %></span>
+                    </li>
+                    <%})%>
+                </ul>
+
+                <ul class="checkout__total__all">
+                  <div class="cart__discount">
+                    <h6>Discount codes</h6>
+
+                    <input type="text" name="couponName" id="coupon" placeholder="Coupon code">
+                    <button type="button" id="coupon" onclick="check()">Apply</button>
+
+                  </div>
+
+
+                  <li>Subtotal <span>$<%= sum %></span></li>
+                  <li>Shipping <span style="color: black;">FREE</span></li>
+
+                  <li>Total<span id="total">
+                      <%= sum %>
+                    </span><span>$</span>
+                    <input type="hidden" name="total" id="final">
+                  </li>
+                </ul>
+                <div class="form-check">
+                  <label class="form-check-label" for="credit">
+
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="credit" value="COD" checked
+                      required>
+                    <span class="checkmark">COD</span>
+                  </label>
+                </div>
+                <div class="form-check">
+                  <label class="form-check-label" for="flexRadioDefault1">
+
+                    <input class="form-check-input" type="radio" name="paymentMethod" id="debit" value="Online"
+                      required>
+                    <span class="checkmark">Online</span>
+                  </label>
+                </div>
+                <button type="submit" value="submit" class="site-btn">PLACE ORDER</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <%- include('../partials/user_footer.ejs') %>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      $("#checkout").submit((e) => {
+        e.preventDefault();
+        
+        $.ajax({
+          url: "/placeOrder",
+          method: "post",
+          data: $("#checkout").serialize(),
+          success: (response) => {
+            if (response.success) {
+              location.href = "/ordersuccess";
+            } else {
+              razorPay(response);
+            }
+          },
+        });
+      });
+
+      function razorPay(order) {
+        var options = {
+          key: "rzp_test_KZoEOF0tWJGBnX", // Enter the Key ID generated from the Dashboard
+          amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+          currency: "INR",
+          name: "Kicks",
+          description: "Test Transaction",
+          image: "/admin/products/adddias 123.jpg",
+          order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+          handler: function (response) {
+            verifyPayment(response, order);
+          },
+          prefill: {
+            name: "Thalha",
+            email: "thalhaz999@gmail.com",
+            contact: "9999999999",
+          },
+          notes: {
+            address: "Razorpay Corporate Office",
+          },
+          theme: {
+            color: "#3399cc",
+          },
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.on("payment.failed", function (response) {
+          location.href = "/ordersuccess";
+        });
+        rzp1.open();
+      }
+
+      function verifyPayment(payment, order) {
+        $.ajax({
+          url: "/verifypayment",
+          data: {
+            payment,
+            order,
+          },
+          method: "post",
+          success: (response) => {
+            if (response.success) {
+              console.log("succes");
+              location.href = "/ordersuccess";
+            } else {
+              console.log("fail");
+              location.href = "/cart";
+            }
+          },
+        });
+      }
+
+      function check() {
+        let coupon = document.getElementById("coupon").value;
+        let total = document.getElementById("total").innerHTML;
+        $.ajax({
+          url: '/checkCoupon',
+          data: {
+            coupon,
+            total
+          },
+          method: 'post',
+          success: (response) => {
+            if (response.user) {
+              Swal.fire({
+                title: "Coupon already used!",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.coupon) {
+              Swal.fire({
+                title: "Coupon Applied!",
+                icon: "success",
+                confirmButtonText: "continue",
+              }).then(() => {
+                document.getElementById("total").innerHTML = response.number - response.discountAmount;
+                document.getElementById("final").value = response.number - response.discountAmount;
+              })
+            } else if (response.coupons) {
+              Swal.fire({
+                title: "Coupon Applied!",
+                icon: "success",
+                confirmButtonText: "continue",
+              }).then(() => {
+                document.getElementById("total").innerHTML = response.number - response.discountAmount;
+                document.getElementById("final").value = response.number - response.discountAmount;
+              })
+            } else if (response.invalid) {
+              Swal.fire({
+                title: "invalid Coupon",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.expiry) {
+              Swal.fire({
+                title: "Coupon expired",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            } else if (response.purchase) {
+              Swal.fire({
+                title: "Minimum purchase 100!",
+                icon: "error",
+                confirmButtonText: "continue",
+              })
+            }
+          }
+        })
+      }
+    </script>

@@ -1,0 +1,40 @@
+<%- include('../partials/adminPartial.ejs') %>
+  <!-- Table Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-secondary rounded h-100 p-4">
+                <h6 class="mb-4">Coupon</h6>
+                <div class="table-responsive">
+                    <table id="tableform" class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Coupon</th>
+                                <th scope="col">Discount(%)</th>
+                                <th scope="col">MaxLimit</th>
+                                <th scope="col">ExpiryDate</th>
+                               
+                        </thead>
+                        <tbody>
+                           <% coupons.forEach((coupon)=>{%>
+                            <tr>
+                                <td><%= coupon.couponName %></td>
+                                <td><%= (coupon.discount)*100 %></td>
+                                <td><%= coupon.maxLimit %></td>
+                                <td><%= coupon.expiryDate %></td>
+                                <!-- <td><a href="#">
+                                    <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Edit</button></a></td>                                -->
+                            </tr>
+                            <%})%>
+                        </tbody>
+                    </table>
+                    <div class="text-center mb-2">
+                        <a href="/admin/addcoupon" class="btn btn-secondary">Add Coupon</a>
+                        </div>
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

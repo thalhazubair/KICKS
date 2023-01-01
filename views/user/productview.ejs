@@ -1,0 +1,216 @@
+<%- include('../partials/user_navbar.ejs') %>
+
+       <!-- Shop Details Section Begin -->
+    <section class="shop-details">
+      <div class="product__details__pic">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="product__details__breadcrumb">
+                          <a href="./index.html">Home</a>
+                          <a href="./shop.html">Shop</a>
+                          <span>Product Details</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-lg-3 col-md-3">
+                      <ul class="nav nav-tabs" role="tablist">
+                          <li class="nav-item">
+                              <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">
+                                  <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-1.png">
+                                  </div>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">
+                                  <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-2.png">
+                                  </div>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab">
+                                  <div class="product__thumb__pic set-bg" data-setbg="img/shop-details/thumb-3.png">
+                                  </div>
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" data-toggle="tab" href="#tabs-4" role="tab">
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+                  <div class="col-lg-6 col-md-9">
+                      <div class="tab-content">
+                          <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                              <div class="product__details__pic__item">
+                                  <img src="/admin/products/<%= data.name%>.jpg" alt="">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="product__details__content">
+          <div class="container">
+              <div class="row d-flex justify-content-center">
+                  <div class="col-lg-8">
+                      <div class="product__details__text">
+                          <h4><%= data.name %></h4>
+                          <h3>$<%= data.price %></h3>
+                          <p><%= data.description %></p>
+                          <div class="product__details__option">
+                              <div class="product__details__option__size">
+                                  <span>Size:</span>
+                                  <label for="xxl"><%= data.size %>
+                                      <input type="radio" id="xxl">
+                                  </label>
+                              </div>
+                          </div>
+                          <div class="product__details__cart__option">
+                              
+                              <a><button class="btn btn-dark" onclick="return addToCart('<%= data._id %>')">+ Add To Cart</button></a>
+                          </div>
+                          <div class="product__details__btns__option">
+                              <!-- <a href="#"><i class="fa fa-heart"></i> add to wishlist</a> -->
+                              
+                          </div>
+                          <div class="product__details__last__option">
+                              <h5><span>Guaranteed Safe Checkout</span></h5>
+                              <img src="img/shop-details/details-payment.png" alt="">
+                              <ul>
+                                 
+                                  <li><span>Categories:</span> <%= data.category%></li>
+                                 
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- Shop Details Section End -->
+
+      <!-- Footer Section Begin -->
+      <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="http://localhost:3000/user/vendors/@popperjs/popper.min.js"></script>
+    <script src="http://localhost:3000/user/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="http://localhost:3000/user/vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="http://localhost:3000/user/vendors/feather-icons/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="http://localhost:3000/user/assets/js/theme.js"></script>
+
+      <!-- Js Plugins -->
+      <script src="http://localhost:3000/user/assets/js/jquery-3.3.1.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/bootstrap.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.nice-select.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.nicescroll.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.countdown.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.slicknav.js"></script>
+      <script src="http://localhost:3000/user/assets/js/mixitup.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/owl.carousel.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/main.js"></script>
+
+      <script>
+        function addToCart(proId){
+            $.ajax({
+                url:"/addcart/"+proId,
+                method:"get",
+                success:(response)=>{
+if(response.status){
+    let count = $('#cartCount').html()
+    count=parseInt(count)+1
+    $('#cartCount').html(count)
+}
+                }
+            })
+        }
+      </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

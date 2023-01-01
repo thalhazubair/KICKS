@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>majestic | Landing, Ecommerce &amp; Business Templatee</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:3000/user/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:3000/user/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost:3000/user/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="http://localhost:3000/user/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="http://localhost:3000/user/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="user/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="http://localhost:3000/user/assets/css/theme.css" rel="stylesheet">
+
+     <!-- Css Styles -->
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/bootstrap.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/elegant-icons.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/magnific-popup.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/nice-select.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/owl.carousel.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/slicknav.min.css" type="text/css">
+     <link rel="stylesheet" href="http://localhost:3000/user/assets/css/style.css" type="text/css">
+     <link rel="stylesheet" href="sweetalert2.min.css">
+
+
+
+  </head>
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-inline-flex" href="/"><span class="text-1000 fs-0 fw-bold ms-2">KICKS</span></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/shop">SHOP</a></li>
+              <% allCategory.forEach((categories)=>{ %>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="/categoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
+                <%})%>
+            </ul>
+            <form class="d-flex">
+              <a class="text-1000" href="/cart"><span class="badge badge-success" id="cartCount"><%= count %></span>
+                <svg class="feather feather-shopping-cart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+              </a>
+                <a class="text-1000" href="#!">
+                <svg class="feather feather-search me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </a>
+                <a class="text-1000" href="/getprofile">
+                <svg class="feather feather-user me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </a>
+                <a class="text-1000" href="/wishlist">
+                <svg class="feather feather-heart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </a>
+              <a class="text-1000" href="/logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+              </a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+        <!-- Breadcrumb Section Begin -->
+        <section class="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="breadcrumb__text">
+                            <h4>Shopping Cart</h4>
+                            <div class="breadcrumb__links">
+                                <a href="./index.html">Home</a>
+                                <a href="./shop.html">Shop</a>
+                                <span>Shopping Cart</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    <!-- Breadcrumb Section End -->
+
+    <!-- Shop Section Begin -->
+    <section class="shop spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="shop__sidebar">
+                        <div class="shop__sidebar__search">
+                            <form action="/search" method="post">
+                                <input type="text" placeholder="Search..." name="search" aria-label="Search" aria-describedby="search-addon">
+                                <button type="submit"><span class="icon_search"></span></button>
+                            </form>
+                            <% if(locals.err_msg) { %>
+                                <div class="col-lg-12 col-md-6 mt-lg-5 ">
+                                  
+                                    <h3 class="text-danger text-center "><strong><%= err_msg %></strong></h3>
+                                  
+                                  
+                                </div>
+                                <% } %>
+                        </div>
+                        <div class="shop__sidebar__accordion">
+                            <div class="accordion" id="accordionExample">
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                    </div>
+                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__categories">
+                                                <ul class="nice-scroll">
+                                                    <% allCategory.forEach((categories)=>{ %>
+                                                    <li><a href="/shopcategoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
+                                                    <%})%>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__brand">
+                                                <ul>
+                                                    <% brand.forEach((product)=>{ %>
+                                                    <li><a href="/shopbrandfilter/<%= product._id %>"><%= product._id %></a></li>
+                                                    <%})%>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-heading">
+                                        <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    </div>
+                                    <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            <div class="shop__sidebar__price">
+                                                <ul>
+                                                    <li><a href="/shoppricefilter?option=0-50">$0.00 - $50.00</a></li>
+                                                    <li><a href="/shoppricefilter?option=51-100">$51.00 - $100.00</a></li>
+                                                    <li><a href="/shoppricefilter?option=101-150">$101.00 - $150.00</a></li>
+                                                    <li><a href="/shoppricefilter?option=151-200">$151.00 - $200.00</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <!-- <div class="shop__product__option">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__left">
+                                    <p>Showing 1–12 of 126 results</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <div class="shop__product__option__right">
+                                    <p>Sort by Price:</p>
+                                    <select>
+                                        <option value="">Low To High</option>
+                                        <option value="">$0 - $55</option>
+                                        <option value="">$55 - $100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row">
+                        <% allProduct.forEach((product)=>{ %>
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                    <div class="card card-span h-100 text-white  product__item__pic set-bg"><a href="/productdetails/<%= product._id %>"><img class="img-fluid h-100" src="/admin/products/<%= product.name%>.jpg" alt="..." /></a>
+                                        <ul class="product__hover">
+                                            <li><button class="btn py-0 px-0 btn-outline-none" id="wishButton" onclick="addToWishlist('<%= product._id %>')"><img src="user/assets/img/icon/heart.png" class="" alt=""></button></li>
+                                        </ul>
+                                    <!-- <ul class="product__hover">
+                                        <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
+                                        <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
+                                        </li>
+                                        <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
+                                    </ul> -->
+                                </div>
+                                <div class="product__item__text">
+                                    <h6><%= product.name %></h6>
+                                    <a><button id="addtoCart" class="btn btn-primary" onclick="return addToCart('<%= product._id %>')">+ Add To Cart</button></a>
+                                    <h5>$<%= product.price %></h5>
+                                </div>
+                            </div>
+                        </div>
+                        <%})%>
+                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                          <li class="page-item">
+                            <a class="page-link" href="/shop?page= 1" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <% for (let i = 1; i<= pages ; i++){ %> <% if( i == pageNum){ %>
+                          <li class="page-item active"><a class="page-link" href="/shop?page=<%= i %>"><%= i %></a></li>
+                          <% }else{ %>
+                          <li class="page-item"><a class="page-link" href="/shop?page=<%= i %>"><%= i %></a></li>
+                          <% } %> <% } %>
+                          <li class="page-item">
+                            <a class="page-link" href="/shop?page <%= pages %>" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Shop Section End -->
+    
+    <!-- Footer Section Begin -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__logo">
+                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                        </div>
+                        <p>The customer is at the heart of our unique business model, which includes design.</p>
+                        <a href="#"><img src="img/payment.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Clothing Store</a></li>
+                            <li><a href="#">Trending Shoes</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>Shopping</h6>
+                        <ul>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">Payment Methods</a></li>
+                            <li><a href="#">Delivary</a></li>
+                            <li><a href="#">Return & Exchanges</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                    <div class="footer__widget">
+                        <h6>NewLetter</h6>
+                        <div class="footer__newslatter">
+                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                            <form action="#">
+                                <input type="text" placeholder="Your email">
+                                <button type="submit"><span class="icon_mail_alt"></span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="footer__copyright__text">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p>Copyright ©
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>2020
+                            All rights reserved | This template is made with <i class="fa fa-heart-o"
+                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+
+    </main>
+    <!-- ===============================================-->
+    <!--    End of Main Content-->
+    <!-- ===============================================-->
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="http://localhost:3000/user/vendors/@popperjs/popper.min.js"></script>
+    <script src="http://localhost:3000/user/vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="http://localhost:3000/user/vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="http://localhost:3000/user/vendors/feather-icons/feather.min.js"></script>
+    <script>
+      feather.replace();
+    </script>
+    <script src="user/assets/js/theme.js"></script>
+
+      <!-- Js Plugins -->
+      <script src="http://localhost:3000/user/assets/js/jquery-3.3.1.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/bootstrap.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.nice-select.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.nicescroll.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.magnific-popup.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.countdown.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/jquery.slicknav.js"></script>
+      <script src="http://localhost:3000/user/assets/js/mixitup.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/owl.carousel.min.js"></script>
+      <script src="http://localhost:3000/user/assets/js/main.js"></script>
+      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function addToCart(proId) {
+            $.ajax({
+                url: "/addcart/" + proId,
+                method: "get",
+                success: (response) => {
+                    if (response.status) {
+                        let count = $('#cartCount').html()
+                        count = parseInt(count) + 1
+                        $('#cartCount').html(count);
+                        Swal.fire({
+                            title: "Added to cart!",
+                            icon: "success",
+                            confirmButtonText: "continue",
+                        }).then(function () {
+                            location.reload()
+                        });
+                    } if (response.productExist) {
+                        Swal.fire({
+                            title: "Product exist in cart!",
+                            icon: "error",
+                            confirmButtonText: "continue",
+                        }).then(function () {
+                            location.reload()
+                        });
+                    }if (response.stock) {
+                        Swal.fire({
+                            title: "Out Of Stock!",
+                            icon: "error",
+                            confirmButtonText: "continue",
+                        }).then(function () {
+                            location.reload()
+                        });
+                    }
+                }
+            })
+        }
+    </script>
+
+<!-- wishlist -->
+
+      <script>
+        function addToWishlist(proId) {
+  $.ajax({
+    url: "/addTowishlist/" + proId,
+    method: "get",
+    success: (response) => {
+      if (response.status) {  
+        Swal.fire({
+          title: "Added to wishlist!",
+          icon: "success",
+          confirmButtonText: "continue",
+        }).then(function(){
+  window.location.reload();
+});
+      }
+      if (response.productExist) { 
+        Swal.fire({
+          title: "Alredy Exist in wishlist", 
+          icon: "error",
+          confirmButtonText: "continue",
+        }).then(function(){
+  window.location.reload();
+});
+    }
+      if (response.cart) {
+        Swal.fire({
+          title: "Already Exist cart!",
+          text: "Please visit cart",
+          icon: "error",
+          confirmButtonText: "continue",
+        }).then(function(){
+  window.location.reload();
+});
+      }
+    },
+  });
+}
+     </script>
+
+<script>
+    document.getElementById("option1").addEventListener("click", function(event) {
+      event.preventDefault();
+    
+      // Send a request to the server with the href of the element
+      fetch(event.target.href, { method: "GET" });
+    });
+    
+</script>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

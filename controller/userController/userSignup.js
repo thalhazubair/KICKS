@@ -1,8 +1,8 @@
 const User = require("../../model/user/signUpModel")
 const mailer = require('../../middleware/otp')
 const bcrypt = require("bcrypt");
+// const { render } = require("ejs");
 
-let data;
 module.exports={
 
     getSignup:(req,res)=>{
@@ -12,28 +12,30 @@ module.exports={
     postSignup: async (req,res)=>{
 
         try{
-            data =req.body;
+            let userdata =req.body;
             let mailDetails = {
                 from: "thalhaz999@gmail.com",
-                to: data.email,
+                to: userdata.email,
                 subject: "KICKS ACCOUNT REGISTRATION",
                 html: `<p>YOUR OTP FOR REGISTERING IN KICKS IS ${mailer.OTP}</p>`,
               };
-              if(req.body.password === req.body.confirmpassword){
-                User.find({ email:data.email,number:data.number })
+              console.log("ivida");
+              if(userdata.password === userdata.confirmpassword){
+                User.find({ $or:[{email:userdata.email},{number:userdata.number}]})
                 .then((result)=>{
-                    if(result.length){
-                        res.render('user/singup',{err_message:"details already exist"});
+                   
+                    if(result.length){          
+                       
+                        res.render('user/signup',{err_msg:"details already exist"});
                     }else{
                         
-                        mailer.mailTransporter.sendMail(mailDetails,(err,data)=>{
+                        mailer.mailTransporter.sendMail(mailDetails,(err)=>{
                             if(err){
                               
                                 console.log('error occurs');
                                 
                             }else{
-                                res.render('user/otpsignup')
-                                console.log(data);
+                                res.render('user/otpsignup',{userdata});
                             }
                         })
                     }
@@ -42,24 +44,24 @@ module.exports={
                 res.render('user/signup',{err_message:"password must be same"})
               }
         }catch(error){
-            console.log(error);
+            console.log(error +"error");
         }
     },
     
     postOtpsignup:async(req,res)=>{
         try{
+            const userdata = req.body
             let otp = req.body.otp;
             console.log(otp);
             console.log(mailer.OTP);
             if(mailer.OTP == otp){
-                console.log('matched');
-               await bcrypt.hash(data.password, 10).then((password)=>{
-                    console.log("password");
+                console.log(userdata);
+               await bcrypt.hash(userdata.password, 10).then((password)=>{
+                
                     const user = new User({
-                        firstname:data.firstname,
-                        lastname:data.lastname,
-                        email:data.email,
-                        number:data.number,
+                        name:userdata.name,
+                        email:userdata.email,
+                        number:userdata.number,
                         password:password,
                     });
                      user.save().then(()=>{
@@ -68,10 +70,13 @@ module.exports={
                     })
                 })
             }else{
-                console.log("error");
+                res.render("user/otpsignup",{err_msg:"the otp doesn't match", userdata})
             }
         }catch(error){
             console.log(error);
         }
     },
+
+
+ 
 }

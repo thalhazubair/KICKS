@@ -14,14 +14,25 @@ router.get('/category',adminController.getCategory)
 router.get('/addcategory',adminController.addCategory)
 router.post('/addcategory',adminController.postCategory)
 router.get('/editcategory/:id',adminController.editCategory)
-router.post('/posteditcategory/:id',adminController.updateCategory)
+router.post('/posteditcategory/:id',adminController.postupdateCategory)
 
 router.get('/product',adminController.getProduct)
 router.get('/addproduct',adminController.addProduct)
 router.post('/addproduct',adminController.postProduct)
-
 router.get('/edit',adminController.editProduct)
-router.post('/edit/:name',adminController.updateProduct)
+router.post('/edit/:name',adminController.postupdateProduct)
+
+router.get('/coupon',adminController.getCoupon)
+router.get('/addcoupon',adminController.getAddCoupon)
+router.post('/addcoupon',adminController.postCoupon)
+router.post('/salesFilter',adminController.getSalesFilter)
+
+router.get("/deleteproduct/:id",adminController.deleteProduct);
+
+router.get('/orderDetails',adminController.getorderDetails)
+router.post( "/changeStatus/:id",adminController.postchangeStatus)
+
+router.get('/download',adminController.getDownload)
 
 router.get('/logout',adminController.getLogout)
 module.exports = router

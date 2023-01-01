@@ -29,8 +29,20 @@
                     <div class="form-outline form-white d-flex justify-content-center pb-3">
                         <input type="password" name="otp" id="otp" placeholder="OTP" class="form-control test" />
                         <label class="form-label" for="otp"></label>
+                        <input type="text" name="name" id="name" value="<%=userdata.name %>" hidden/>
+                        <input type="text" name="email" id="email" value="<%=userdata.email %>" hidden/>
+                        <input type="text" name="number" id="number" value="<%=userdata.number %>" hidden/>
+                        <input type="text" name="password" id="password" value="<%=userdata.password %>" hidden/>
+                        <input type="text" name="confirmpassword" id="confirmpassword" value="<%=userdata.confirmpassword %>" hidden/>
                       </div>
-      
+                      <% if(locals.err_msg) { %>
+                        <div class="col-lg-12 col-md-6 mt-lg-5 ">
+                          
+                            <h3 class="text-danger text-center "><strong><%= err_msg %></strong></h3>
+                          
+                          
+                        </div>
+                        <% } %>
       
                     <button class="btn btn-outline-dark btn-lg test" type="submit" value="Submit">JOIN US</button>
                 </form>
@@ -39,6 +51,16 @@
                   <div>
                     <p class="mb-0 test">Already a Member? <a href="/login" class="test1">Sign In</a>
                     </p>
+                    <form action="/signup" method="post" id="form">
+                      <input type="text" name="name" id="name" value="<%=userdata.name %>" hidden/>
+                      <input type="text" name="email" id="email" value="<%=userdata.email %>" hidden/>
+                      <input type="text" name="number" id="number" value="<%=userdata.number %>" hidden/>
+                      <input type="text" name="password" id="password" value="<%=userdata.password %>" hidden/>
+                      <input type="text" name="confirmpassword" id="confirmpassword" value="<%=userdata.confirmpassword %>" hidden/>
+                      <p class="small pb-lg-2"><a href="javascript:{}" onclick="document.getElementById('form').submit();" class="text">Resend OTP?</a></p>
+
+                    </form>
+
                   </div>
       
                 </div>
@@ -48,5 +70,21 @@
         </div>
       </section>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+ 
+
+  <script>
+  window.addEventListener("load", function() {
+    function addLink() {
+      var link = document.createElement("a");
+      link.href = "http://www.example.com";
+      link.innerHTML = "Click here to visit Example.com";
+      document.body.appendChild(link);
+    }
+
+    setTimeout(addLink, 6000); // run addLink() after 60 seconds
+  });
+
+</script>
+
 </body>
 </html>

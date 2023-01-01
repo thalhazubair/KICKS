@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>majestic | Landing, Ecommerce &amp; Business Templatee</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="user/assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="user/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="user/assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="user/assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="user/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="user/assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="user/assets/css/theme.css" rel="stylesheet">
+
+     <!-- Css Styles -->
+     <link rel="stylesheet" href="user/assets/css/bootstrap.min.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/elegant-icons.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/magnific-popup.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/nice-select.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/owl.carousel.min.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/slicknav.min.css" type="text/css">
+     <link rel="stylesheet" href="user/assets/css/style.css" type="text/css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+
+  </head>
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    <main class="main" id="top">
+        <div>
+      <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 d-block" data-navbar-on-scroll="data-navbar-on-scroll">
+        <div class="container"><a class="navbar-brand d-inline-flex" href="/"><span class="text-1000 fs-0 fw-bold ms-2">KICKS</span></a>
+          <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+          <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/shop">SHOP</a></li>
+              <% allCategory.forEach((categories)=>{ %>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+                <%})%>
+            </ul>
+            <form class="d-flex">
+              <a class="text-1000" href="/cart">
+                <svg class="feather feather-shopping-cart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+              </a>
+                <a class="text-1000" href="#!">
+                <svg class="feather feather-search me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </a>
+                <a class="text-1000" href="/getprofile">
+                <svg class="feather feather-user me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </a>
+                <a class="text-1000" href="#!">
+                <svg class="feather feather-heart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              </a>
+              <a class="text-1000" href="/logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
+              </a>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+      <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Status</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-4 mb-4">
+        <div class="row d-flex cart align-items-center justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-12 border-right p-5">
+                            <div class="text-center order-details">
+                                <div class="d-flex justify-content-center mb-5 flex-column align-items-center"> <span class="check1"><i class="fa fa-check fa-4x" style="color:green"></i></span> <span class="font-weight-bold">Order Confirmed</span> <a href="#" class="text-decoration-none invoice-link"></a> </div> <a href="/orderdetails"><button class="btn btn-danger order-button">Go to your Order</button></a>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6 background-muted">
+                            <div class="p-3 border-bottom">
+                                <div class="mt-3">
+                                    <h6 class="mb-0"><%= order.name%></h6> <span class="d-block mb-0"><%= order.number%></span> <small><%= order.totalAmount%></small>
+                                    <div class="d-flex flex-column mt-3"> <small><i class="fa fa-check text-muted"></i></small> <small><i class="fa fa-check text-muted"></i></small> </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 border-bottom">
+                                <div class="col-md-6 border-right">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>x3</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>$20 per unit</span> </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 border-bottom">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>Subtotal</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>$60</span> </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 border-bottom">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>Processing fees</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span>$1.80</span> </div>
+                                </div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span class="font-weight-bold">Total</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span class="font-weight-bold">$61.80</span> </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<%- include('../partials/user_footer.ejs') %>

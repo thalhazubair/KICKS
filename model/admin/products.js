@@ -8,10 +8,20 @@ const productSchema = new Schema({
         required:true,
     },
 
+    brand:{
+        type:String,
+        required:true,
+    },
+
     description:{
         type:String,
         required:true
     },
+
+    stock: {
+        type: Number,
+        required: true,
+      },
 
     category:{
         type:String,
@@ -28,6 +38,14 @@ const productSchema = new Schema({
         required:true
     },
 
+    images: [{
+        type: String,
+      }],
+      
+    isDeleted: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const product = mongoose.model("products", productSchema);

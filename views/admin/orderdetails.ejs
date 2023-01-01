@@ -1,0 +1,277 @@
+<%- include('../partials/adminPartial.ejs') %>
+  <!-- Table Start -->
+  <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+      <div class="col-12">
+        <div class="bg-secondary rounded h-100 p-4">
+          <h6 class="mb-4">Product</h6>
+          <div class="table-responsive">
+            <table id="tableform" class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">Payment<br>Method</th>
+                  <th scope="col">Payment<br>Status</th>
+                  <th scope="col">Order<br>Status</th>
+                  <th scope="col">Order Date</th>
+                  <th scope="col">Amount</th>
+                  <th scope="col">Control</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% data.forEach((order)=>{ %>
+                  <tr>
+                    <td>
+                      <%= order.name %>
+                    </td>
+                    <td>
+                      <%= order.number %>
+                    </td>
+
+                    <td>
+                      <%= order.paymentMethod %>
+                    </td>
+                    <td>
+                      <%= order.paymentStatus %>
+                    </td>
+
+                    <% if(order.orderStatus==="pending" ){ %>
+                      <td>
+                        <%= order.orderStatus %>
+                      </td>
+
+                      <% }else if(order.orderStatus==="shipped" ){ %>
+                        <td>
+                          <%= order.orderStatus %>
+                        </td>
+
+                        <% }else if(order.orderStatus==="delivered" ){ %>
+                          <td>
+                            <%= order.orderStatus %>
+                          </td>
+
+                          <% }else if(order.orderStatus==="Cancelled" ){ %>
+                            <td>
+                              <%= order.orderStatus %>
+                            </td>
+                            <% } %>
+
+                              <td>
+                                <%= order.orderDate %>
+                              </td>
+                              <td>
+                                $<%= order.totalAmount %>
+                              </td>
+
+
+
+                              <td><a href="/admin/edit?name=<%= data.name %>" data-toggle="modal"
+                                  data-target="#modalRegister-<%= order._id %>" class="btn btn-secondary">Edit</a>
+                                  <button
+                                  type="button"
+                                  class="btn btn-outline-none"
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal-<%= order._id %>"
+                                >
+                                  <i class="bi bi-view-list"></i>
+                                </button></td>
+
+                  </tr>
+
+                  <%})%>
+              </tbody>
+             
+            </table>
+            <div class="d-flex justify-content-center">
+            <% for (let i = 1; i <= Math.ceil(totalOrders / limit); i++) { %>
+              <a href="/admin/orderdetails?page=<%= i %>" class="p-2 <%= page == i ? 'active' : '' %>">
+                <%= i %>
+              </a>
+            <% } %>
+          </div>
+            <% data.forEach((order)=>{ %>
+              <div id="modalRegister-<%= order._id %>" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-dialog-centered">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                      <form action="/admin/changeStatus/<%= order._id %>" method="post">
+                        <div class="mb-3">
+                          <label for="recipient-name" name="orderStatus" class="col-form-label">
+                            Order Status
+                          </label>
+                          <select class="form-select" name="orderStatus" aria-label="Default select example">
+                            <option selected>
+                              <%= order.orderStatus %>
+                            </option>
+                            <option value="pending" name="orderStatus">Pending</option>
+                            <option value="shipped" name="orderStatus">Shipped</option>
+                            <option value="delivered" name="orderStatus">Delivered</option>
+                            <option value="Cancelled" name="orderStatus">Cancelled</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="message-text" name="paymentStatus" class="col-form-label">Payment Status</label>
+                          <select class="form-select" name="paymentStatus" aria-label="Default select example">
+                            <option selected>
+                              <%= order.paymentStatus %>
+                            </option>
+                            
+                            
+                           
+                            <% if (order.orderStatus === "delivered") { %>
+                            <option value="paid" name="paymentStatus">paid</option>
+                            <% } %>
+                          </select>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" value="submit" class="btn btn-primary">
+                            confirm
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="exampleModal-<%= order._id %>" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Product Details</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <p class="text-muted mb-0 float-right">Invoice Number : <%=
+                        order._id %></p>
+                      <div class="card shadow-0 border mb-4">
+                        
+                        <div class="card-body">
+                            <% order.product.forEach((product)=>{ %>
+                          <div class="row">
+                            <div class="col-md-2">
+                                <img src="/admin/products/<%= product.name %>.jpg"
+                                class="img-fluid"
+                                alt="Phone"
+                              />
+                            </div>
+                            <div
+                              class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                            >
+                              <p class="text-muted mb-0">
+                                <%= product.name %>
+                              </p>
+                            </div>
+                            
+                            <div
+                              class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                            >
+                              <p class="text-muted mb-0 small">
+                                <%= product.brand %>
+                              </p>
+                            </div>
+                            <div
+                              class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                            >
+                              <p class="text-muted mb-0 small">
+                                <%= product.description %>
+                              </p>
+                            </div>
+                            <div
+                              class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                            >
+                              <p class="text-muted mb-0 small">
+                                <%= product.productQuantity %>
+                              </p>
+                            </div>
+                            <div
+                            class="col-md-2 text-center d-flex justify-content-center align-items-center"
+                          >
+                            <p class="text-muted mb-0 small">
+                              <%= product.price %>
+                            </p>
+                          </div>
+                          </div>
+                          <% }) %>
+                          <hr
+                            class="mb-4"
+                            style="background-color: #e0e0e0; opacity: 1"
+                          />
+                          <div class="d-flex justify-content-between pt-2">
+                                <p class="fw-bold mb-0">Order Details</p>
+                                <p class="text-muted mb-0">
+                                  <span class="fw-bold me-4">Delivery Charges</span> Free
+                                </p>
+                              </div>
+                    
+                              <div class="d-flex justify-content-between pt-2">
+                                <p class="text-muted mb-0">Invoice Name : <%=
+                                  order.name %></p>
+                                <p class="text-muted mb-0">
+                                  <span class="fw-bold me-4">Total</span>$ <%=
+                                order.totalAmount %>
+                                </p>
+                              </div>
+                              <div class="d-flex justify-content-between mb-5">
+                                <p class="text-muted mb-0">
+                                  Address : <%= order.address %></p>
+                              </div>
+                            
+                          <div class="row d-flex align-items-center">
+                            <div class="col-md-2">
+                              <p class="text-muted mb-0 small">Track Order</p>
+                            </div>
+                            <div class="col-md-10">
+                              <div
+                                class="progress"
+                                style="height: 6px; border-radius: 16px"
+                              >
+                                <div
+                                  class="progress-bar"
+                                  role="progressbar"
+                                  style="
+                                    width: 5%;
+                                    border-radius: 16px;
+                                    background-color: #a8729a;
+                                  "
+                                  aria-valuenow="65"
+                                  aria-valuemin="0"
+                                  aria-valuemax="100"
+                                ></div>
+                              </div>
+                              <div class="d-flex justify-content-around mb-1">
+                                <p class="text-muted mt-1 mb-0 small ms-xl-5">
+                                  Out for delivary
+                                </p>
+                                <p class="text-muted mt-1 mb-0 small ms-xl-5">
+                                  Delivered
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!-- Table End -->
