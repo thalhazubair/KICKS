@@ -70,7 +70,7 @@ module.exports={
                     })
                 })
             }else{
-                res.render("user/otpsignup",{err_msg:"the otp doesn't match", userdata})
+                res.render("user/otpsignup",{err_msg:"OTP doesn't match", userdata})
             }
         }catch(error){
             console.log(error);

@@ -371,7 +371,7 @@ module.exports = {
           console.log(data);
         });
 
-      if (req?.files?.image) {
+        if (req && req.files && req.files.image) {
         const image = req.files.image;
         image.mv("./public/admin/products/" + id + ".jpg");
         res.redirect("/admin/product");

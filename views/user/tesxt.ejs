@@ -109,22 +109,22 @@
                       </h1>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="/addNewAddress" method="post">
+                    <form action="/addNewAddress" method="post" onsubmit="return validation()">
                       <div class="modal-body">
                         <div class="mb-3">
                           <label for="recipient-name" class="col-form-label">Housename:</label>
-                          <input required type="text" class="form-control" id="housename" name="housename" />
-                          <p id="houseError" style="color: red"></p>
+                          <input type="text" class="form-control" id="housename" name="housename" />
+                          <p id="housenameError" style="color: red"></p>
                         </div>
                         <div class="mb-3">
                           <label for="recipient-name" class="col-form-label">street</label>
-                          <input required type="text" class="form-control" id="street" name="street" />
-                          <p id="areaError" style="color: red"></p>
+                          <input type="text" class="form-control" id="street" name="street" />
+                          <p id="streetError" style="color: red"></p>
                         </div>
                         <div class="mb-3">
                           <label for="recipient-name" class="col-form-label">city</label>
-                          <input required type="text" class="form-control" id="city" name="city" />
-                          <p id="landmarkError" style="color: red"></p>
+                          <input type="text" class="form-control" id="city" name="city" />
+                          <p id="cityError" style="color: red"></p>
                         </div>
                         <div class="mb-3">
                           <div class="row">
@@ -132,19 +132,19 @@
 
                             <div class="col-md-6 mb-3">
                               <label for="lastName">State</label>
-                              <input required type="text" class="form-control" id="state" name="state" />
-                              <p id="pincodeError" style="color: red"></p>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="mb-3">
-                          <div class="row">
-                            <div class="col-md-6 mb-3">
-                              <label for="firstName">Post</label>
-                              <input required type="text" class="form-control" id="pincode" name="pincode" />
+                              <input type="text" class="form-control" id="state" name="state" />
                               <p id="stateError" style="color: red"></p>
                             </div>
                           </div>
+                        </div>
+                        
+                          <div class="row">
+                            <div class="col-md-6 mb-3">
+                              <label for="firstName">Post</label>
+                              <input type="text" class="form-control" id="pincode" name="pincode" />
+                              <p id="pincodeError" style="color: red"></p>
+                            </div>
+  
                         </div>
                       </div>
                       <div class="modal-footer">
@@ -172,6 +172,58 @@
   <%- include('../partials/user_footer.ejs') %>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+        function validation(){
+        let flag=0
+        let housename= document.getElementById('housename').value.trim()
+        let street= document.getElementById('street').value.trim()
+        let city = document.getElementById('city').value.trim()
+        let state = document.getElementById('state').value.trim()
+        let pincode = document.getElementById('pincode').value.trim()
+      
+      
+        if(housename==''){
+          document.getElementById('housenameError').innerHTML="Housename Required"
+          flag=1
+        }else{
+          document.getElementById('housenameError').innerHTML=""
+        }
+
+        if(street==''){
+            document.getElementById('streetError').innerHTML="street name Required"
+            flag=1
+        }else{
+            document.getElementById('streetError').innerHTML=""
+        }
+
+        if(city==''){
+            document.getElementById('cityError').innerHTML="city Required"
+            flag=1
+        }else{
+            document.getElementById('cityError').innerHTML=""
+        }
+      
+        if(state==''){
+            document.getElementById('stateError').innerHTML="State Required"
+            flag=1
+        }else{
+            document.getElementById('stateError').innerHTML=""
+        }
+
+        if(pincode==''){
+            document.getElementById('pincodeError').innerHTML="Pincode Required"
+            flag=1
+        }else{
+            document.getElementById('pincodeError').innerHTML=""
+        }
+      
+        if(flag==1){
+            return false
+        }
+      
+        }
+        </script>
+    
     <script>
       $("#checkout").submit((e) => {
         e.preventDefault();
