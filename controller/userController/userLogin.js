@@ -725,7 +725,7 @@ module.exports = {
         { userId: userId },
         { cart: { $elemMatch: { productId: objId } } }
       );
-      if (productexistcart?.product?.length) {
+      if (productexistcart && productexistcart.product && productexistcart.product.length) {
         res.json({ cart: true });
       } else {
         if (userWishlist) {
