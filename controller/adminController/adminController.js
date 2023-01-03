@@ -114,58 +114,49 @@ module.exports = {
 
   getHome: async (req, res) => {
     if (req.session.admin) {
-      const data = await order.find();
+      // const data = await order.find();
 
-      const totalAmount = data.reduce((accumulator, object) => {
-        return (accumulator += object.totalAmount);
-      }, 0);
+      // const totalAmount = data.reduce((accumulator, object) => {
+      //   return (accumulator += object.totalAmount);
+      // }, 0);
 
-      const amountToday = await order.find({
-        orderDate: moment().format("MMM Do YY"),
-      });
+      // const amountToday = await order.find({
+      //   orderDate: moment().format("MMM Do YY"),
+      // });
 
-      const totalAmountToday = amountToday.reduce((accumulator, object) => {
-        return (accumulator += object.totalAmount);
-      }, 0);
+      // const totalAmountToday = amountToday.reduce((accumulator, object) => {
+      //   return (accumulator += object.totalAmount);
+      // }, 0);
 
-      const OrderToday = await order.find({
-        orderDate: moment().format("MMM Do YY"),
-      });
+      // const OrderToday = await order.find({
+      //   orderDate: moment().format("MMM Do YY"),
+      // });
 
-      const allOrders = data.length;
-      const todayOrder = OrderToday.length;
+      // const allOrders = data.length;
+      // const todayOrder = OrderToday.length;
 
-      const Cod = await order.find({ paymentMethod : "COD" })
-      const cashOnDelivery = Cod.length
+      // const Cod = await order.find({ paymentMethod : "COD" })
+      // const cashOnDelivery = Cod.length
 
-      const Online = await order.find({ paymentMethod : "Online" })
-      const onlinePayment = Online.length
+      // const Online = await order.find({ paymentMethod : "Online" })
+      // const onlinePayment = Online.length
 
-      const pendingOrder = await order.find({ orderStatus: "pending" });
-      const pending = pendingOrder.length;
+      // const pendingOrder = await order.find({ orderStatus: "pending" });
+      // const pending = pendingOrder.length;
   
 
-      const cancelledOrder = await order.find({ orderStatus: "Cancelled" });
-      const cancelled = cancelledOrder.length;
+      // const cancelledOrder = await order.find({ orderStatus: "Cancelled" });
+      // const cancelled = cancelledOrder.length;
       
 
-      const deliveredOrder = await order.find({ orderStatus: "delivered" });
-      const delivered = deliveredOrder.length;
+      // const deliveredOrder = await order.find({ orderStatus: "delivered" });
+      // const delivered = deliveredOrder.length;
       
-      const shippedOrder = await order.find({ orderStatus: "shipped" });
-      const shipped = shippedOrder.length;
+      // const shippedOrder = await order.find({ orderStatus: "shipped" });
+      // const shipped = shippedOrder.length;
 
 
-      res.render("admin/dashboard", {
-        data,
-        totalAmount,
-        todayOrder,
-        allOrders,
-        totalAmountToday,
-        cashOnDelivery,
-        onlinePayment,
-        shipped,delivered,cancelled,pending
-      });
+      res.redirect("admin/table")
     } else {
       res.redirect("/admin");
     }
