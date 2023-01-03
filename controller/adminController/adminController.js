@@ -156,7 +156,16 @@ module.exports = {
       const shipped = shippedOrder.length;
 
 
-      res.redirect("/admin/table");
+      res.render("admin/dashboard", {
+        data,
+        totalAmount,
+        todayOrder,
+        allOrders,
+        totalAmountToday,
+        cashOnDelivery,
+        onlinePayment,
+        shipped,delivered,cancelled,pending
+      });
     } else {
       res.redirect("/admin");
     }
