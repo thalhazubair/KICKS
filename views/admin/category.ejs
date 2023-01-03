@@ -14,17 +14,7 @@
                                 <th scope="col">Delete</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <% categories.forEach((categories)=>{ %>
-                            <tr>
-                                <td><%= categories.categories %></td>
-                                <td><a href="/admin/editcategory/<%= categories._id %>">
-                                    <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Edit</button></a></td>
-                                <td><a href="/admin/deletecategory/<%= categories._id %>">
-                                    <button type="button" class="btn btn-primary btn-sm" style="height: 25px;">Delete</button></a></td>                               
-                            </tr>
-                            <%})%>
-                        </tbody>
+                      
                     </table>
                     <div class="text-center mb-2">
                         <a href="/admin/addCategory" class="btn btn-secondary">Add Category</a>

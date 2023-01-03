@@ -116,8 +116,6 @@ module.exports = {
     if (req.session.admin) {
       const data = await order.find();
 
-      const productData = await product.find();
-
       const totalAmount = data.reduce((accumulator, object) => {
         return (accumulator += object.totalAmount);
       }, 0);
@@ -158,8 +156,7 @@ module.exports = {
       const shipped = shippedOrder.length;
 
 
-      res.render("admin/product", {
-        productData,
+      res.render("admin/category", {
         data,
         totalAmount,
         todayOrder,
