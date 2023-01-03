@@ -156,7 +156,7 @@ module.exports = {
       // const shipped = shippedOrder.length;
 
 
-      res.redirect("admin/table")
+      res.redirect("/admin/table")
     } else {
       res.redirect("/admin");
     }
