@@ -156,7 +156,7 @@ module.exports = {
       const shipped = shippedOrder.length;
 
 
-      res.render("admin/login", {
+      res.render("admin/product", {
         data,
         totalAmount,
         todayOrder,
