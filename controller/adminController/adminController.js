@@ -297,7 +297,7 @@ module.exports = {
       const productData = await newproduct.save();
       if (productData) {
         let imagename = productData.name;
-        image.mv("./public/admin/products/" + imagename + ".webp", (err) => {
+        image.mv("./public/admin/products/" + imagename + ".jpg", (err) => {
           if (!err) {
             res.redirect("/admin/product");
           } else {
@@ -373,7 +373,7 @@ module.exports = {
 
         if (req && req.files && req.files.image) {
         const image = req.files.image;
-        image.mv("./public/admin/products/" + id + ".webp");
+        image.mv("./public/admin/products/" + id + ".jpg");
         res.redirect("/admin/product");
       } else {
         res.redirect("/admin/product");
