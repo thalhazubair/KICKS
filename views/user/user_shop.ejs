@@ -387,18 +387,14 @@
           title: "Added to wishlist!",
           icon: "success",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
       }
       if (response.productExist) { 
         Swal.fire({
           title: "Alredy Exist in wishlist", 
           icon: "error",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
     }
       if (response.cart) {
         Swal.fire({
@@ -406,9 +402,7 @@
           text: "Please visit cart",
           icon: "error",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
       }
     },
   });
