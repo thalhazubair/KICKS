@@ -126,7 +126,7 @@
                 product: productId,
               },
               method: "post",
-              success: () => {
+              success: (response) => {
                 if(response.status){
                     Swal.fire({
                             title: "Product Removed",
