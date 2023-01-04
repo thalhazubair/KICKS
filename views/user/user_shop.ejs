@@ -194,25 +194,7 @@
                     </div>
                 </div>
                 <div class="col-lg-9">
-                    <!-- <div class="shop__product__option">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__left">
-                                    <p>Showing 1–12 of 126 results</p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <div class="shop__product__option__right">
-                                    <p>Sort by Price:</p>
-                                    <select>
-                                        <option value="">Low To High</option>
-                                        <option value="">$0 - $55</option>
-                                        <option value="">$55 - $100</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                     <div class="row">
                         <% allProduct.forEach((product)=>{ %>
                         <div class="col-lg-4 col-md-6 col-sm-6">
@@ -221,12 +203,7 @@
                                         <ul class="product__hover">
                                             <li><button class="btn py-0 px-0 btn-outline-none" id="wishButton" onclick="addToWishlist('<%= product._id %>')"><img src="user/assets/img/icon/heart.png" class="" alt=""></button></li>
                                         </ul>
-                                    <!-- <ul class="product__hover">
-                                        <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                        <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                                    </ul> -->
+                                  
                                 </div>
                                 <div class="product__item__text">
                                     <h6><%= product.name %></h6>
@@ -374,7 +351,13 @@
                         let count = $('#cartCount').html()
                         count = parseInt(count) + 1
                         $('#cartCount').html(count);
-                       
+                        Swal.fire({
+                            title: "Added to cart!",
+                            icon: "success",
+                            confirmButtonText: "continue",
+                        }).then(function () {
+                            location.reload()
+                        });
                     } if (response.productExist) {
                         Swal.fire({
                             title: "Product exist in cart!",
