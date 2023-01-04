@@ -60,12 +60,12 @@
                                         <div class="quantity">  
                                             <div class="container">
                                                 <% if (product.productQuantity > 1) { %>
-                                                <input type="button" class="mx-1" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
+                                                <input type="button" class="mx-1" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
                                                 <% } else { %>
-                                                    <input type="button" disabled class="mx-1" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
+                                                    <input type="button" disabled class="mx-1" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
                                                     <% } %>
-                                                <input type="number" readonly name="quantity" value="<%= product.productQuantity %>" maxlength="2" max="10" size="1" id="quantity" min="1" pattern="\d*" />
-                                                <input type="button" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',1)" value="+" min="1"/>
+                                                    <p id="<%= product.productDetail._id %>" min="0" name="quantity"> <%= product.productQuantity%> </p>
+                                                <input type="button" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',1)" value="+" min="1"/>
                                                 </div>
                                              </div>
                                     </td>

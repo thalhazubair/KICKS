@@ -91,8 +91,8 @@
     <script>
         function changeQuantity(cartId,proId,count){
             
-            let quantity = document.getElementById("quantity").value;
-            console.log(quantity);
+            let quantity = parseInt(document.getElementById(proId).innerHTML);
+            console.log(quantity+"dsfsdf");
             $.ajax({
                 url:'/changeQuantity',
                 data:{
@@ -104,16 +104,14 @@
                 method:'post',
                 success:(response)=>{
                     if (response.status){
-                    document.getElementById("quantity").innerHTML = quantity + count;
-                    location.reload();
+                    document.getElementById(proId).innerHTML = quantity + count;
+                   
                     } if (response.stock) {
                         Swal.fire({
                             title: "OOPs..Stock Out!",
                             icon: "error",
                             confirmButtonText: "continue",
-                        }).then(function () {
-                            location.reload()
-                        });
+                        })
                     }
                 },
             })

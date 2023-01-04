@@ -535,8 +535,9 @@ module.exports = {
   postchangeQuantity: async (req, res) => {
     try {
       const data = req.body;
-
-      console.log(data);
+      data.count = parseInt(data.count);
+      data.quantity = parseInt(data.quantity);
+     
 
       const objId = mongoose.Types.ObjectId(data.product);
        product.findOne({ _id: objId }).then((productDetail)=>{
