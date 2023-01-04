@@ -22,15 +22,19 @@ let user;
 module.exports = {
   getPage: async (req, res) => {
     try {
-      const allCategory = await category.find();
-      const allProduct = await product.find();
-      Session.find({ data: req.session.user }).then((data) => {
-        if (!data.length == 0) {
-          res.redirect("/home");
-        } else {
-          res.render("user/landingpage", { allProduct, allCategory });
-        }
-      });
+      category.find().then((allCategory)=>{
+        product.find().then((allProduct)=>{
+          Session.find({ data: req.session.user }).then((data) => {
+            if (!data.length == 0) {
+              res.redirect("/home");
+            } else {
+              res.render("user/landingpage", { allProduct, allCategory });
+            }
+          });
+        })
+      })
+     
+      
     } catch (error) {
       res.render("user/404");
     }
@@ -248,31 +252,37 @@ module.exports = {
       let docCount;
       const id = req.params.brand;
 
-      const allCategory = await category.find();
-      const brand = await product.aggregate([{ $group: { _id: "$brand" } }]);
+      category.find().then((allCategory)=>{
+        product.aggregate([{ $group: { _id: "$brand" } }]).then((brand)=>{
 
-      await product
-        .find({ brand: id })
-        .countDocuments()
-        .then((docs) => {
-          docCount = docs;
-
-          return product
-            .find({ brand: id })
-            .skip((pageNum - 1) * perpage)
-            .limit(perpage);
-        })
-        .then((allProduct) => {
-          res.render("user/user_shop", {
-            allProduct,
-            allCategory,
-            count,
-            brand,
-            docCount,
-            pageNum,
-            pages: Math.ceil(docCount / perpage),
+           product
+          .find({ brand: id })
+          .countDocuments()
+          .then((docs) => {
+            docCount = docs;
+  
+            return product
+              .find({ brand: id })
+              .skip((pageNum - 1) * perpage)
+              .limit(perpage);
+          })
+          .then((allProduct) => {
+            res.render("user/user_shop", {
+              allProduct,
+              allCategory,
+              count,
+              brand,
+              docCount,
+              pageNum,
+              pages: Math.ceil(docCount / perpage),
+            });
           });
-        });
+
+        })
+      })
+      
+
+     
     } catch (error) {
       res.render("user/404");
     }
@@ -288,10 +298,10 @@ module.exports = {
 
       const [minPrice, maxPrice] = priceRange.split("-").map(Number);
 
-      const allCategory = await category.find();
-      const brand = await product.aggregate([{ $group: { _id: "$brand" } }]);
+    category.find().then((allCategory)=>{
+        product.aggregate([{ $group: { _id: "$brand" } }]).then((brand)=>{
 
-      await product
+        product
         .find({
           price: {
             $gte: minPrice,
@@ -325,6 +335,12 @@ module.exports = {
             pages: Math.ceil(docCount / perpage),
           });
         });
+
+        })
+      })
+     
+
+      
     } catch (error) {
       res.render("user/404");
     }
@@ -337,57 +353,61 @@ module.exports = {
       let docCount;
       let user = req.session.user;
       let key = req.body.search;
-      const allCategory = await category.find();
-      const brand = await product.aggregate([{ $group: { _id: "$brand" } }]);
-      if (user) {
-        await product
-          .find({
-            $or: [
-              { name: new RegExp(key, "i") },
-              { category: new RegExp(key, "i") },
-            ],
-          })
-          .countDocuments()
-          .then((docs) => {
-            docCount = docs;
-
-            return product
+      category.find().then((allCategory)=>{
+        product.aggregate([{ $group: { _id: "$brand" } }]).then((brand)=>{
+          if (user) {
+            product
               .find({
                 $or: [
                   { name: new RegExp(key, "i") },
                   { category: new RegExp(key, "i") },
                 ],
               })
-              .skip((pageNum - 1) * perpage)
-              .limit(perpage);
-          })
-          .then((allProduct) => {
-            if (allProduct.length) {
-              res.render("user/user_shop", {
-                user,
-                allProduct,
-                brand,
-                allCategory,
-                count,
-                pageNum,
-                docCount,
-                pages: Math.ceil(docCount / perpage),
+              .countDocuments()
+              .then((docs) => {
+                docCount = docs;
+    
+                return product
+                  .find({
+                    $or: [
+                      { name: new RegExp(key, "i") },
+                      { category: new RegExp(key, "i") },
+                    ],
+                  })
+                  .skip((pageNum - 1) * perpage)
+                  .limit(perpage);
+              })
+              .then((allProduct) => {
+                if (allProduct.length) {
+                  res.render("user/user_shop", {
+                    user,
+                    allProduct,
+                    brand,
+                    allCategory,
+                    count,
+                    pageNum,
+                    docCount,
+                    pages: Math.ceil(docCount / perpage),
+                  });
+                } else {
+                  res.render("user/user_shop", {
+                    user,
+                    allProduct,
+                    brand,
+                    allCategory,
+                    count,
+                    pageNum,
+                    docCount,
+                    pages: Math.ceil(docCount / perpage),
+                    err_msg: "Ooops ...! No Match",
+                  });
+                }
               });
-            } else {
-              res.render("user/user_shop", {
-                user,
-                allProduct,
-                brand,
-                allCategory,
-                count,
-                pageNum,
-                docCount,
-                pages: Math.ceil(docCount / perpage),
-                err_msg: "Ooops ...! No Match",
-              });
-            }
-          });
-      }
+          }
+        })
+      })
+      
+      
     } catch (error) {
       res.render("user/404");
     }
@@ -519,27 +539,31 @@ module.exports = {
       console.log(data);
 
       const objId = mongoose.Types.ObjectId(data.product);
-      const productDetail = await product.findOne({ _id: objId });
-      console.log(productDetail.stock);
-      if (data.count == 1 && data.quantity == productDetail.stock) {
-        res.json({ stock: true });
-      } else {
-        await cart
-          .aggregate([
-            {
-              $unwind: "$cart",
-            },
-          ])
-          .then(() => {});
-        await cart
-          .updateOne(
-            { _id: data.cart, "cart.productId": objId },
-            { $inc: { "cart.$.quantity": data.count } }
-          )
-          .then(() => {
-            res.json({ status: true });
-          });
-      }
+       product.findOne({ _id: objId }).then((productDetail)=>{
+
+        if (data.count == 1 && data.quantity == productDetail.stock) {
+          res.json({ stock: true });
+        } else {
+           cart
+            .aggregate([
+              {
+                $unwind: "$cart",
+              },
+            ])
+            .then(() => {
+               cart
+              .updateOne(
+                { _id: data.cart, "cart.productId": objId },
+                { $inc: { "cart.$.quantity": data.count } }
+              )
+              .then(() => {
+                res.json({ status: true });
+              });
+            });
+         
+        }
+
+      })
     } catch (error) {
       res.render("user/404");
     }
@@ -549,12 +573,12 @@ module.exports = {
     try {
       const data = req.body;
       const objId = mongoose.Types.ObjectId(data.product);
-      await cart.aggregate([
+      cart.aggregate([
         {
           $unwind: "$cart",
         },
-      ]);
-      cart
+      ]).then(()=>{
+        cart
         .updateOne(
           { _id: data.cart, "cart.productId": objId },
           { $pull: { cart: { productId: objId } } }
@@ -563,6 +587,8 @@ module.exports = {
           console.log(data);
           res.json({ status: true });
         });
+      })
+     
     } catch (error) {
       res.render("user/404");
     }
@@ -572,12 +598,12 @@ module.exports = {
     try {
       const data = req.body;
       const objId = mongoose.Types.ObjectId(data.product);
-      await wishlist.aggregate([
+      wishlist.aggregate([
         {
           $unwind: "$product",
         },
-      ]);
-      wishlist
+      ]).then(()=>{
+        wishlist
         .updateOne(
           { _id: data.wishlist, "product.productId": objId },
           { $pull: { product: { productId: objId } } }
@@ -586,6 +612,8 @@ module.exports = {
           console.log(data);
           res.json({ status: true });
         });
+      })
+   
     } catch (error) {
       res.render("user/404");
     }
@@ -659,10 +687,12 @@ module.exports = {
   getProduct: async (req, res) => {
     try {
       const id = req.params.id;
-      const allCategory = await category.find();
-      product.findOne({ _id: id }).then((data) => {
-        res.render("user/productview", { data, count, allCategory });
-      });
+        category.find().then((allCategory)=>{
+        product.findOne({ _id: id }).then((data) => {
+          res.render("user/productview", { data, count, allCategory });
+        });
+      })
+     
     } catch (error) {
       res.render("user/404");
     }
@@ -765,48 +795,55 @@ module.exports = {
       let proObj = {
         productId: objId,
       };
-      const userData = await User.findOne({ email: user });
-      const userId = mongoose.Types.ObjectId(userData._id);
-      const userWishlist = await wishlist.findOne({ userId: userId });
-      const productexistcart = await cart.findOne(
-        { userId: userId },
-        { cart: { $elemMatch: { productId: objId } } }
-      );
-      if (
-        productexistcart &&
-        productexistcart.product &&
-        productexistcart.product.length
-      ) {
-        res.json({ cart: true });
-      } else {
-        if (userWishlist) {
-          let proExist = userWishlist.product.findIndex(
-            (product) => product.productId == id
-          );
-          if (proExist != -1) {
-            res.json({ productExist: true });
-          } else {
-            wishlist
-              .updateOne({ userId: userId }, { $push: { product: proObj } })
-              .then(() => {
-                res.json({ status: true });
-              });
-          }
-        } else {
-          wishlist
-            .create({
-              userId: userId,
-              product: [
-                {
-                  productId: objId,
-                },
-              ],
-            })
-            .then(() => {
-              res.json({ status: true });
-            });
-        }
-      }
+      User.findOne({ email: user }).then((userData)=>{
+        const userId = mongoose.Types.ObjectId(userData._id);
+        wishlist.findOne({ userId: userId }).then((userWishlist)=>{
+          cart.findOne(
+            { userId: userId },
+            { cart: { $elemMatch: { productId: objId } } } 
+          ).then((productexistcart)=>{
+            if (
+              productexistcart &&
+              productexistcart.product &&
+              productexistcart.product.length
+            ) {
+              res.json({ cart: true });
+            } else {
+              if (userWishlist) {
+                let proExist = userWishlist.product.findIndex(
+                  (product) => product.productId == id
+                );
+                if (proExist != -1) {
+                  res.json({ productExist: true });
+                } else {
+                  wishlist
+                    .updateOne({ userId: userId }, { $push: { product: proObj } })
+                    .then(() => {
+                      res.json({ status: true });
+                    });
+                }
+              } else {
+                wishlist
+                  .create({
+                    userId: userId,
+                    product: [
+                      {
+                        productId: objId,
+                      },
+                    ],
+                  })
+                  .then(() => {
+                    res.json({ status: true });
+                  });
+              }
+            }
+          })
+        })
+      })
+      
+     
+      
+     
     } catch (error) {
       res.render("user/404");
     }
@@ -815,83 +852,89 @@ module.exports = {
   getCheckout: async (req, res) => {
     try {
       const userId = req.session.user;
-      const userData = await User.findOne({ email: userId });
-
-      const pro = await product.find();
-      const allCategory = await category.find();
-
-      User.aggregate([
-        {
-          $match: { email: userId },
-        },
-        {
-          $unwind: "$addressDetails",
-        },
-        {
-          $project: {
-            housename: "$addressDetails.housename",
-            street: "$addressDetails.street",
-            city: "$addressDetails.city",
-            state: "$addressDetails.state",
-            pincode: "$addressDetails.pincode",
-          },
-        },
-      ]).then((useraddressData) => {
-        cart
-          .aggregate([
-            {
-              $match: { userId: userData.id },
-            },
-            {
-              $unwind: "$cart",
-            },
-            {
-              $project: {
-                productItem: "$cart.productId",
-                productQuantity: "$cart.quantity",
+      User.findOne({ email: userId }).then((userData)=>{
+        product.find().then((pro)=>{
+          category.find().then((allCategory)=>{
+            User.aggregate([
+              {
+                $match: { email: userId },
               },
-            },
-            {
-              $lookup: {
-                from: "products",
-                localField: "productItem",
-                foreignField: "_id",
-                as: "productDetail",
+              {
+                $unwind: "$addressDetails",
               },
-            },
-            {
-              $project: {
-                productItem: 1,
-                productQuantity: 1,
-                productDetail: { $arrayElemAt: ["$productDetail", 0] },
-              },
-            },
-            {
-              $addFields: {
-                productPrice: {
-                  $sum: {
-                    $multiply: ["$productQuantity", "$productDetail.price"],
-                  },
+              {
+                $project: {
+                  housename: "$addressDetails.housename",
+                  street: "$addressDetails.street",
+                  city: "$addressDetails.city",
+                  state: "$addressDetails.state",
+                  pincode: "$addressDetails.pincode",
                 },
               },
-            },
-          ])
-          .then((allProduct) => {
-            const sum = allProduct.reduce((accumulator, object) => {
-              return accumulator + object.productPrice;
-            }, 0);
-            count = allProduct.length;
-            res.render("user/tesxt", {
-              allProduct,
-              count,
-              sum,
-              allCategory,
-              pro,
-              userData,
-              useraddressData,
+            ]).then((useraddressData) => {
+              cart
+                .aggregate([
+                  {
+                    $match: { userId: userData.id },
+                  },
+                  {
+                    $unwind: "$cart",
+                  },
+                  {
+                    $project: {
+                      productItem: "$cart.productId",
+                      productQuantity: "$cart.quantity",
+                    },
+                  },
+                  {
+                    $lookup: {
+                      from: "products",
+                      localField: "productItem",
+                      foreignField: "_id",
+                      as: "productDetail",
+                    },
+                  },
+                  {
+                    $project: {
+                      productItem: 1,
+                      productQuantity: 1,
+                      productDetail: { $arrayElemAt: ["$productDetail", 0] },
+                    },
+                  },
+                  {
+                    $addFields: {
+                      productPrice: {
+                        $sum: {
+                          $multiply: ["$productQuantity", "$productDetail.price"],
+                        },
+                      },
+                    },
+                  },
+                ])
+                .then((allProduct) => {
+                  const sum = allProduct.reduce((accumulator, object) => {
+                    return accumulator + object.productPrice;
+                  }, 0);
+                  count = allProduct.length;
+                  res.render("user/tesxt", {
+                    allProduct,
+                    count,
+                    sum,
+                    allCategory,
+                    pro,
+                    userData,
+                    useraddressData,
+                  });
+                });
             });
-          });
-      });
+          })
+        })
+      })
+
+      
+      
+
+     
     } catch (error) {
       console.log(error);
       res.render("user/404");
@@ -1218,9 +1261,13 @@ module.exports = {
   getEditAccount: async (req, res) => {
     try {
       const user = req.session.user;
-      const userdata = await User.findOne({ email: user });
-      const allCategory = await category.find();
-      res.render("user/editaccount", { allCategory, userdata });
+      User.findOne({ email: user }).then((userdata)=>{
+        category.find().then((allCategory)=>{
+          res.render("user/editaccount", { allCategory, userdata });
+        })
+      })
+      
+     
     } catch (error) {
       res.render("user/404");
     }
