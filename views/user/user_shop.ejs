@@ -355,25 +355,19 @@
                             title: "Added to cart!",
                             icon: "success",
                             confirmButtonText: "continue",
-                        }).then(function () {
-                            location.reload()
-                        });
+                        })
                     } if (response.productExist) {
                         Swal.fire({
                             title: "Product exist in cart!",
                             icon: "error",
                             confirmButtonText: "continue",
-                        }).then(function () {
-                            location.reload()
-                        });
+                        })
                     }if (response.stock) {
                         Swal.fire({
                             title: "Out Of Stock!",
                             icon: "error",
                             confirmButtonText: "continue",
-                        }).then(function () {
-                            location.reload()
-                        });
+                        })
                     }
                 }
             })
@@ -393,18 +387,14 @@
           title: "Added to wishlist!",
           icon: "success",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
       }
       if (response.productExist) { 
         Swal.fire({
           title: "Alredy Exist in wishlist", 
           icon: "error",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
     }
       if (response.cart) {
         Swal.fire({
@@ -412,9 +402,7 @@
           text: "Please visit cart",
           icon: "error",
           confirmButtonText: "continue",
-        }).then(function(){
-  window.location.reload();
-});
+        })
       }
     },
   });

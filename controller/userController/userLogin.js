@@ -583,8 +583,7 @@ module.exports = {
           { _id: data.cart, "cart.productId": objId },
           { $pull: { cart: { productId: objId } } }
         )
-        .then((data) => {
-          console.log(data);
+        .then(() => {
           res.json({ status: true });
         });
       })

@@ -64,7 +64,7 @@
                                                 <% } else { %>
                                                     <input type="button" disabled class="mx-1" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
                                                     <% } %>
-                                                <input type="number" name="quantity" value="<%= product.productQuantity %>" maxlength="2" max="10" size="1" id="quantity" min="1" pattern="\d*" />
+                                                <input type="number" readonly name="quantity" value="<%= product.productQuantity %>" maxlength="2" max="10" size="1" id="quantity" min="1" pattern="\d*" />
                                                 <input type="button" onclick="return changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',1)" value="+" min="1"/>
                                                 </div>
                                              </div>
@@ -102,5 +102,6 @@
     </section>
     <% } %>
     <!-- Shopping Cart Section End -->
+    
 
     <%- include('../partials/user_footer.ejs') %>

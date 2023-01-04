@@ -179,17 +179,13 @@
           title: "Product added to cart!",
           icon: "success", 
           confirmButtonText: "continue",
-        }).then(function () {
-          location.reload();
-        });
+        })
       }if (response.productExist) {
                         Swal.fire({
                             title: "Product exist in cart!",
                             icon: "error",
                             confirmButtonText: "continue",
-                        }).then(function () {
-                            location.reload()
-                        });
+                        })
                     }
                 }
             })
@@ -205,8 +201,7 @@
           product: productId,
         },
         method: "post",
-        success: () => {
-          location.reload();
+        success: (response) => {
         },
       });
     }
