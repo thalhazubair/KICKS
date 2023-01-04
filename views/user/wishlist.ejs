@@ -205,14 +205,8 @@
           product: productId,
         },
         method: "post",
-        success: (response) => {
-          if(response.status){
-                    Swal.fire({
-                            title: "Product Removed",
-                            icon: "success",
-                            confirmButtonText: "continue",
-                        })
-                }
+        success: () => {
+          location.reload();
         },
       });
     }

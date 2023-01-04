@@ -105,12 +105,15 @@
                 success:(response)=>{
                     if (response.status){
                     document.getElementById("quantity").innerHTML = quantity + count;
+                    location.reload();
                     } if (response.stock) {
                         Swal.fire({
                             title: "OOPs..Stock Out!",
                             icon: "error",
                             confirmButtonText: "continue",
-                        })
+                        }).then(function () {
+                            location.reload()
+                        });
                     }
                 },
             })
@@ -126,14 +129,8 @@
                 product: productId,
               },
               method: "post",
-              success: (response) => {
-                if(response.status){
-                    Swal.fire({
-                            title: "Product Removed",
-                            icon: "success",
-                            confirmButtonText: "continue",
-                        })
-                }
+              success: () => {
+                location.reload();
               },
             });
           }
