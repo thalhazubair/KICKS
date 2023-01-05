@@ -395,11 +395,11 @@
           const record = {};
 
 
-          record.name = cells[1].textContent;
-          record.paymentMethod = cells[2].textContent;
-          record.paymentStatus = cells[3].textContent;
-          record.orderStatus = cells[4].textContent;
-          record.amount = cells[5].textContent;
+          record.name = cells[1].innerText;
+          record.paymentMethod = cells[2].innerText;
+          record.paymentStatus = cells[3].innerText;
+          record.orderStatus = cells[4].innerText;
+          record.amount = cells[5].innerText;
 
           data.push(record);
         }
