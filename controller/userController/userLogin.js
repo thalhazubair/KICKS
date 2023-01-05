@@ -536,7 +536,7 @@ module.exports = {
     }
   },
 
-  postchangeQuantity: async (req, res) => {
+  postchangeQuantity: async (req, res, next) => {
     try {
       const data = req.body;
       data.count = parseInt(data.count);
@@ -564,7 +564,7 @@ module.exports = {
                 { $inc: { "cart.$.quantity": data.count } }
               )
               .then(() => {
-                res.json({ status: true });
+                next();
               });
             });
          
@@ -573,6 +573,61 @@ module.exports = {
       })
     } catch (error) {
       res.render("user/404");
+    }
+  },
+
+  totalAmount: async (req, res) => {
+    try {
+      const userId = req.session.user;
+      const userData = await User.findOne({ email: userId });
+      const productData = await cart.aggregate([
+        {
+          $match: { userId: userData.id },
+        },
+        {
+          $unwind: "$cart",
+        },
+        {
+          $project: {
+            productItem: "$cart.productId",
+            productQuantity: "$cart.quantity",
+          },
+        },
+        {
+          $lookup: {
+            from: "products",
+            localField: "productItem",
+            foreignField: "_id",
+            as: "productDetail",
+          },
+        },
+        {
+          $project: {
+            productItem: 1,
+            productQuantity: 1,
+            productDetail: { $arrayElemAt: ["$productDetail", 0] },
+          },
+        },
+        {
+          $addFields: {
+            productPrice: {
+              $multiply: ["$productQuantity", "$productDetail.price"],
+            },
+          },
+        },
+        {
+          $group: {
+            _id: userId,
+            total: {
+              $sum: { $multiply: ["$productQuantity", "$productDetail.price"] },
+            },
+          },
+        },
+      ]);
+      res.json({ status: true, productData });
+    } catch {
+      console.error();
+      res.render("user/error500");
     }
   },
 

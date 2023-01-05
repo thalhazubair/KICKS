@@ -15,7 +15,7 @@ router.post("/otpsignup",userSignup.postOtpsignup)
 router.get("/shop",userLogin.getShop)
 router.get('/cart',verifyLogin.verifyLoginUser,userLogin.getCart)
 router.get("/addcart/:id",verifyLogin.verifyLoginUser,userLogin.addCart)
-router.post("/changeQuantity",userLogin.postchangeQuantity)
+router.post("/changeQuantity",userLogin.postchangeQuantity,userLogin.totalAmount)
 router.post("/removeProduct",userLogin.postremoveProduct)
 
 router.post('/checkCoupon',verifyLogin.verifyLoginUser,userLogin.checkCoupon)
