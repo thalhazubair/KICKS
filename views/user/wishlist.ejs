@@ -32,8 +32,8 @@
 
      <!-- Css Styles -->
      <link rel="stylesheet" href="/user/assets/css/bootstrap.min.css" type="text/css">
-     <link rel="stylesheet" href="/user/assets/css/font-awesome.min.css" type="text/css">
-     <link rel="stylesheet" href="/user/assets/css/elegant-icons.css" type="text/css">
+     <!-- <link rel="stylesheet" href="/user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/elegant-icons.css" type="text/css"> -->
      <link rel="stylesheet" href="/user/assets/css/magnific-popup.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/nice-select.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/owl.carousel.min.css" type="text/css">
@@ -165,47 +165,5 @@
 
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        function addToCartWish(proId) { 
-  $.ajax({
-    url: "/addcart/" + proId,
-    method: "get",
-    success: (response) => { 
-      if (response.status) {
-        let count = $("#cartCount").html();
-        count = parseInt(count) + 1;
-        $("#cartCount").html(count);
-        Swal.fire({
-          title: "Product added to cart!",
-          icon: "success", 
-          confirmButtonText: "continue",
-        })
-      }if (response.productExist) {
-                        Swal.fire({
-                            title: "Product exist in cart!",
-                            icon: "error",
-                            confirmButtonText: "continue",
-                        })
-                    }
-                }
-            })
-        }
-    </script>
-
-<script>
-  function removewishlistProduct(wishlistId, productId) {
-      $.ajax({
-        url: "/removewishlistProduct",
-        data: {
-          wishlist: wishlistId,
-          product: productId,
-        },
-        method: "post",
-        success: (response) => {
-        },
-      });
-    }
-
-    </script>
 
     <%- include('../partials/user_footer.ejs') %>

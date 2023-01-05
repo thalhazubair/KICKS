@@ -32,14 +32,13 @@
 
      <!-- Css Styles -->
      <link rel="stylesheet" href="/user/assets/css/bootstrap.min.css" type="text/css">
-     <link rel="stylesheet" href="/user/assets/css/font-awesome.min.css" type="text/css">
-     <link rel="stylesheet" href="/user/assets/css/elegant-icons.css" type="text/css">
+     <!-- <link rel="stylesheet" href="/user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/elegant-icons.css" type="text/css"> -->
      <link rel="stylesheet" href="/user/assets/css/magnific-popup.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/nice-select.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/owl.carousel.min.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/slicknav.min.css" type="text/css">
      <link rel="stylesheet" href="/user/assets/css/style.css" type="text/css">
-     <link rel="stylesheet" href="sweetalert2.min.css">
 
 
 
@@ -246,10 +245,10 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="img/footer-logo.png" alt=""></a>
+                          
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
+                       
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
@@ -284,21 +283,6 @@
                                 <button type="submit"><span class="icon_mail_alt"></span></button>
                             </form>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="footer__copyright__text">
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        <p>Copyright ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>2020
-                            All rights reserved | This template is made with <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                        </p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
                 </div>
             </div>
@@ -340,82 +324,7 @@
       <script src="/user/assets/js/owl.carousel.min.js"></script>
       <script src="/user/assets/js/main.js"></script>
       <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        function addToCart(proId) {
-            $.ajax({
-                url: "/addcart/" + proId,
-                method: "get",
-                success: (response) => {
-                    if (response.status) {
-                        let count = $('#cartCount').html()
-                        count = parseInt(count) + 1
-                        $('#cartCount').html(count);
-                        Swal.fire({
-                            title: "Added to cart!",
-                            icon: "success",
-                            confirmButtonText: "continue",
-                        })
-                    } if (response.productExist) {
-                        Swal.fire({
-                            title: "Product exist in cart!",
-                            icon: "error",
-                            confirmButtonText: "continue",
-                        })
-                    }if (response.stock) {
-                        Swal.fire({
-                            title: "Out Of Stock!",
-                            icon: "error",
-                            confirmButtonText: "continue",
-                        })
-                    }
-                }
-            })
-        }
-    </script>
-
-<!-- wishlist -->
-
-      <script>
-        function addToWishlist(proId) {
-  $.ajax({
-    url: "/addTowishlist/" + proId,
-    method: "get",
-    success: (response) => {
-      if (response.status) {  
-        Swal.fire({
-          title: "Added to wishlist!",
-          icon: "success",
-          confirmButtonText: "continue",
-        })
-      }
-      if (response.productExist) { 
-        Swal.fire({
-          title: "Alredy Exist in wishlist", 
-          icon: "error",
-          confirmButtonText: "continue",
-        })
-    }
-      if (response.cart) {
-        Swal.fire({
-          title: "Already Exist cart!",
-          text: "Please visit cart",
-          icon: "error",
-          confirmButtonText: "continue",
-        })
-      }
-    },
-  });
-}
-     </script>
-
-<script>
-    document.getElementById("option1").addEventListener("click", function(event) {
-      event.preventDefault();
-    
-      // Send a request to the server with the href of the element
-      fetch(event.target.href, { method: "GET" });
-    });
+      <script src="/user/assets/js/ajax.js"></script>
     
 </script>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">

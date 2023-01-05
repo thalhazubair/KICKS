@@ -172,57 +172,7 @@
   <%- include('../partials/user_footer.ejs') %>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script>
-        function validation(){
-        let flag=0
-        let housename= document.getElementById('housename').value.trim()
-        let street= document.getElementById('street').value.trim()
-        let city = document.getElementById('city').value.trim()
-        let state = document.getElementById('state').value.trim()
-        let pincode = document.getElementById('pincode').value.trim()
-      
-      
-        if(housename==''){
-          document.getElementById('housenameError').innerHTML="Housename Required"
-          flag=1
-        }else{
-          document.getElementById('housenameError').innerHTML=""
-        }
-
-        if(street==''){
-            document.getElementById('streetError').innerHTML="street name Required"
-            flag=1
-        }else{
-            document.getElementById('streetError').innerHTML=""
-        }
-
-        if(city==''){
-            document.getElementById('cityError').innerHTML="city Required"
-            flag=1
-        }else{
-            document.getElementById('cityError').innerHTML=""
-        }
-      
-        if(state==''){
-            document.getElementById('stateError').innerHTML="State Required"
-            flag=1
-        }else{
-            document.getElementById('stateError').innerHTML=""
-        }
-
-        if(pincode==''){
-            document.getElementById('pincodeError').innerHTML="Pincode Required"
-            flag=1
-        }else{
-            document.getElementById('pincodeError').innerHTML=""
-        }
-      
-        if(flag==1){
-            return false
-        }
-      
-        }
-        </script>
+  
     
     <script>
       $("#checkout").submit((e) => {
@@ -293,66 +243,5 @@
         });
       }
 
-      function check() {
-        let coupon = document.getElementById("coupon").value;
-        let total = document.getElementById("total").innerHTML;
-        $.ajax({
-          url: '/checkCoupon',
-          data: {
-            coupon,
-            total
-          },
-          method: 'post',
-          success: (response) => {
-            if (response.user) {
-              Swal.fire({
-                title: "Coupon already used!",
-                icon: "error",
-                confirmButtonText: "continue",
-              })
-            } else if (response.coupon) {
-              Swal.fire({
-                title: "Coupon Applied!",
-                icon: "success",
-                confirmButtonText: "continue",
-              }).then(() => {
-                $("#message").text("Coupon applied successfully!").css("color", "green");
-                document.getElementById("total").innerHTML = response.number - response.discountAmount;
-                document.getElementById("final").value = response.number - response.discountAmount;
-                document.getElementById("coupons").disabled = true;
-                
-              })
-            } else if (response.coupons) {
-              Swal.fire({
-                title: "Coupon Applied!",
-                icon: "success",
-                confirmButtonText: "continue",
-              }).then(() => {
-                $("#message").text("Coupon applied successfully!").css("color", "green");
-                document.getElementById("total").innerHTML = response.number - response.discountAmount;
-                document.getElementById("final").value = response.number - response.discountAmount;
-                document.getElementById("coupons").disabled = true;
-              })
-            } else if (response.invalid) {
-              Swal.fire({
-                title: "invalid Coupon",
-                icon: "error",
-                confirmButtonText: "continue",
-              })
-            } else if (response.expiry) {
-              Swal.fire({
-                title: "Coupon expired",
-                icon: "error",
-                confirmButtonText: "continue",
-              })
-            } else if (response.purchase) {
-              Swal.fire({
-                title: "Minimum purchase 100!",
-                icon: "error",
-                confirmButtonText: "continue",
-              })
-            }
-          }
-        })
-      }
+      
     </script>
