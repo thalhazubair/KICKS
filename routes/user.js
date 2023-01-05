@@ -12,13 +12,15 @@ router.get("/signup",userSignup.getSignup)
 router.post("/signup",userSignup.postSignup)
 router.post("/otpsignup",userSignup.postOtpsignup)
 
-router.get("/shop",verifyLogin.verifyLoginUser,userLogin.getShop)
+router.get("/shop",userLogin.getShop)
 router.get('/cart',verifyLogin.verifyLoginUser,userLogin.getCart)
 router.get("/addcart/:id",verifyLogin.verifyLoginUser,userLogin.addCart)
 router.post("/changeQuantity",userLogin.postchangeQuantity)
 router.post("/removeProduct",userLogin.postremoveProduct)
 
 router.post('/checkCoupon',verifyLogin.verifyLoginUser,userLogin.checkCoupon)
+
+router.get("/guestproductdetails/:id",userLogin.guestgetProduct)
 
 router.get("/productdetails/:id",verifyLogin.verifyLoginUser,userLogin.getProduct)
 router.get('/categoryfilter/:categories',verifyLogin.verifyLoginUser,userLogin.getCategory)

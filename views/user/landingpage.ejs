@@ -48,7 +48,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="/shop">SHOP</a></li>
               <% allCategory.forEach((categories)=>{ %>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/categoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
               <%})%>
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="/login">Login</a></li>
 
@@ -182,7 +182,7 @@
                                     <div class="card-body ps-0 bg-200">
                                       <h5 class="fw-bold text-1000 text-truncate"><%= product.name %></h5>
                                       <div class="fw-bold"><span class="text-600 me-2">$<%= product.price %></span></div>
-                                    </div><a class="stretched-link" href="#"></a>
+                                    </div><a class="stretched-link" href="/guestproductdetails/<%= product._id %>"></a>
                                   </div>
                                 </div>
                                 <%})%>

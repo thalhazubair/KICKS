@@ -55,26 +55,21 @@
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item px-2"><a class="nav-link fw-medium active" href="/shop">SHOP</a></li>
                 <% allCategory.forEach((categories)=>{ %>
-                <li class="nav-item px-2"><a class="nav-link fw-medium" href="#outlet"><%= categories.categories %></a></li>
+                <li class="nav-item px-2"><a class="nav-link fw-medium" href="/categoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
                 <%})%>
                 <li class="nav-item px-2"><a class="nav-link fw-medium" href="/login">Login</a></li>
   
               </ul>
               <form class="d-flex">
-                <a class="text-1000" href="/cart">
+                <a class="text-1000" href="/login">
                   <svg class="feather feather-shopping-cart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="9" cy="21" r="1"></circle>
                     <circle cx="20" cy="21" r="1"></circle>
                     <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                   </svg>
                 </a>
-                  <a class="text-1000" href="#!">
-                  <svg class="feather feather-search me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                  </svg>
-                </a>
-                  <a class="text-1000" href="#!">
+               
+                  <a class="text-1000" href="/login">
                   <svg class="feather feather-heart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
                   </svg>
@@ -104,17 +99,25 @@
 
 <!-- Breadcrumb Section End -->
 
-<!-- Shop Section Begin -->
-<section class="shop spad">
+   <!-- Shop Section Begin -->
+   <section class="shop spad">
     <div class="container">
         <div class="row">
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Search...">
+                        <form action="/search" method="post">
+                            <input type="text" placeholder="Search..." name="search" aria-label="Search" aria-describedby="search-addon">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
+                        <% if(locals.err_msg) { %>
+                            <div class="col-lg-12 col-md-6 mt-lg-5 ">
+                              
+                                <h3 class="text-danger text-center "><strong><%= err_msg %></strong></h3>
+                              
+                              
+                            </div>
+                            <% } %>
                     </div>
                     <div class="shop__sidebar__accordion">
                         <div class="accordion" id="accordionExample">
@@ -126,15 +129,9 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__categories">
                                             <ul class="nice-scroll">
-                                                <li><a href="#">Men (20)</a></li>
-                                                <li><a href="#">Women (20)</a></li>
-                                                <li><a href="#">Bags (20)</a></li>
-                                                <li><a href="#">Clothing (20)</a></li>
-                                                <li><a href="#">Shoes (20)</a></li>
-                                                <li><a href="#">Accessories (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
+                                                <% allCategory.forEach((categories)=>{ %>
+                                                <li><a href="/shopcategoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
+                                                <%})%>
                                             </ul>
                                         </div>
                                     </div>
@@ -148,10 +145,9 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__brand">
                                             <ul>
-                                                <li><a href="#">Louis Vuitton</a></li>
-                                                <li><a href="#">Chanel</a></li>
-                                                <li><a href="#">Hermes</a></li>
-                                                <li><a href="#">Gucci</a></li>
+                                                <% brand.forEach((product)=>{ %>
+                                                <li><a href="/shopbrandfilter/<%= product._id %>"><%= product._id %></a></li>
+                                                <%})%>
                                             </ul>
                                         </div>
                                     </div>
@@ -165,115 +161,156 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
                                             <ul>
-                                                <li><a href="#">$0.00 - $50.00</a></li>
-                                                <li><a href="#">$50.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $150.00</a></li>
-                                                <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $250.00</a></li>
-                                                <li><a href="#">250.00+</a></li>
+                                                <li><a href="/shoppricefilter?option=0-50">$0.00 - $50.00</a></li>
+                                                <li><a href="/shoppricefilter?option=51-100">$51.00 - $100.00</a></li>
+                                                <li><a href="/shoppricefilter?option=101-150">$101.00 - $150.00</a></li>
+                                                <li><a href="/shoppricefilter?option=151-200">$151.00 - $200.00</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                </div>
-                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__size">
-                                            <label for="xs">xs
-                                                <input type="radio" id="xs">
-                                            </label>
-                                            <label for="sm">s
-                                                <input type="radio" id="sm">
-                                            </label>
-                                            <label for="md">m
-                                                <input type="radio" id="md">
-                                            </label>
-                                            <label for="xl">xl
-                                                <input type="radio" id="xl">
-                                            </label>
-                                            <label for="2xl">2xl
-                                                <input type="radio" id="2xl">
-                                            </label>
-                                            <label for="xxl">xxl
-                                                <input type="radio" id="xxl">
-                                            </label>
-                                            <label for="3xl">3xl
-                                                <input type="radio" id="3xl">
-                                            </label>
-                                            <label for="4xl">4xl
-                                                <input type="radio" id="4xl">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-9">
-                <div class="shop__product__option">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__left">
-                                <p>Showing 1–12 of 126 results</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
-                                <select>
-                                    <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="row">
                     <% allProducts.forEach((product)=>{ %>
                     <div class="col-lg-4 col-md-6 col-sm-6">
                         <div class="product__item">
-                                <div class="card card-span h-100 text-white product__item__pic set-bg"><img class="img-fluid h-100" src="/admin/products/<%= product.name%>.jpg" alt="..." />
+                                <div class="card card-span h-100 text-white  product__item__pic set-bg"><a href="/productdetails/<%= product._id %>"><img class="img-fluid h-100" src="/admin/products/<%= product.name%>.jpg" alt="..." /></a>
                                     <ul class="product__hover">
-                                        <li><a href="#"><img src="user/assets/img/icon/heart.png" alt=""></a></li>
+                                        <li><button class="btn py-0 px-0 btn-outline-none" id="wishButton" onclick="addToWishlist('<%= product._id %>')"><img src="user/assets/img/icon/heart.png" class="" alt=""></button></li>
                                     </ul>
-                                <!-- <ul class="product__hover">
-                                    <li><a href="#"><img src="img/icon/heart.png" alt=""></a></li>
-                                    <li><a href="#"><img src="img/icon/compare.png" alt=""> <span>Compare</span></a>
-                                    </li>
-                                    <li><a href="#"><img src="img/icon/search.png" alt=""></a></li>
-                                </ul> -->
+                              
                             </div>
                             <div class="product__item__text">
                                 <h6><%= product.name %></h6>
-                                <a href="#" class="add-cart">+ Add To Cart</a>
+                                <a><button id="addtoCart" class="btn btn-primary" onclick="return addToCart('<%= product._id %>')">+ Add To Cart</button></a>
                                 <h5>$<%= product.price %></h5>
                             </div>
                         </div>
                     </div>
                     <%})%>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__pagination">
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <span>...</span>
-                            <a href="#">21</a>
-                        </div>
-                    </div>
-                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                      <li class="page-item">
+                        <a class="page-link" href="/shop?page= 1" aria-label="Previous">
+                          <span aria-hidden="true">&laquo;</span>
+                        </a>
+                      </li>
+                      <% for (let i = 1; i<= pages ; i++){ %> <% if( i == pageNum){ %>
+                      <li class="page-item active"><a class="page-link" href="/shop?page=<%= i %>"><%= i %></a></li>
+                      <% }else{ %>
+                      <li class="page-item"><a class="page-link" href="/shop?page=<%= i %>"><%= i %></a></li>
+                      <% } %> <% } %>
+                      <li class="page-item">
+                        <a class="page-link" href="/shop?page <%= pages %>" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </nav>
             </div>
         </div>
     </div>
 </section>
 <!-- Shop Section End -->
 
-<%- include('../partials/user_footer.ejs') %>
+<!-- Footer Section Begin -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__logo">
+                      
+                    </div>
+                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                   
+                </div>
+            </div>
+            <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Clothing Store</a></li>
+                        <li><a href="#">Trending Shoes</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Sale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="footer__widget">
+                    <h6>Shopping</h6>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Payment Methods</a></li>
+                        <li><a href="#">Delivary</a></li>
+                        <li><a href="#">Return & Exchanges</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
+                <div class="footer__widget">
+                    <h6>NewLetter</h6>
+                    <div class="footer__newslatter">
+                        <p>Be the first to know about new arrivals, look books, sales & promos!</p>
+                        <form action="#">
+                            <input type="text" placeholder="Your email">
+                            <button type="submit"><span class="icon_mail_alt"></span></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- Footer Section End -->
+
+
+</main>
+<!-- ===============================================-->
+<!--    End of Main Content-->
+<!-- ===============================================-->
+
+
+
+
+<!-- ===============================================-->
+<!--    JavaScripts-->
+<!-- ===============================================-->
+<script src="/user/vendors/@popperjs/popper.min.js"></script>
+<script src="/user/vendors/bootstrap/bootstrap.min.js"></script>
+<script src="/user/vendors/is/is.min.js"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+<script src="/user/vendors/feather-icons/feather.min.js"></script>
+<script>
+  feather.replace();
+</script>
+<script src="user/assets/js/theme.js"></script>
+
+  <!-- Js Plugins -->
+  <script src="/user/assets/js/jquery-3.3.1.min.js"></script>
+  <script src="/user/assets/js/bootstrap.min.js"></script>
+  <script src="/user/assets/js/jquery.nice-select.min.js"></script>
+  <script src="/user/assets/js/jquery.nicescroll.min.js"></script>
+  <script src="/user/assets/js/jquery.magnific-popup.min.js"></script>
+  <script src="/user/assets/js/jquery.countdown.min.js"></script>
+  <script src="/user/assets/js/jquery.slicknav.js"></script>
+  <script src="/user/assets/js/mixitup.min.js"></script>
+  <script src="/user/assets/js/owl.carousel.min.js"></script>
+  <script src="/user/assets/js/main.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/user/assets/js/ajax.js"></script>
+
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+</body>
+
+</html>

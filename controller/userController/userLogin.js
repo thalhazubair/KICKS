@@ -183,7 +183,11 @@ module.exports = {
                 res.render("user/guest_shop", {
                   allCategory,
                   allProducts,
+                  count,
                   brand,
+                  docCount,
+                  pageNum,
+                  pages: Math.ceil(docCount / perpage),
                 });
               }
             });
@@ -679,6 +683,19 @@ module.exports = {
       } else {
         res.json({ exist: true });
       }
+    } catch (error) {
+      res.render("user/404");
+    }
+  },
+
+  guestgetProduct: async (req, res) => {
+    try {
+      const id = req.params.id;
+        category.find().then((allCategory)=>{
+        product.findOne({ _id: id }).then((data) => {
+          res.render("user/guestproductview", { data, count, allCategory });
+        });
+      })
     } catch (error) {
       res.render("user/404");
     }
