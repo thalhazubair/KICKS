@@ -19,7 +19,7 @@ router.post('/posteditcategory/:id',adminController.postupdateCategory)
 router.get('/product',adminController.getProduct)
 router.get('/addproduct',adminController.addProduct)
 router.post('/addproduct',adminController.postProduct)
-router.get('/edit',adminController.editProduct)
+router.get('/edit/:name',adminController.editProduct)
 router.post('/edit/:name',adminController.postupdateProduct)
 
 router.get('/coupon',adminController.getCoupon)

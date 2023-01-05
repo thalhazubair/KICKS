@@ -314,12 +314,15 @@ module.exports = {
 
   editProduct: async (req, res) => {
     try {
-      const id = req.query.name;
+      const id = req.params.name;
+      console.log(id);
       const categoriesData = await category.find();
       const productData = await product.findOne({ name: id });
       if (productData) {
+        
         res.render("admin/editProduct", { productData, categoriesData });
       } else {
+       
         res.redirect("/admin");
       }
     } catch (error) {
@@ -374,8 +377,10 @@ module.exports = {
         if (req && req.files && req.files.image) {
         const image = req.files.image;
         image.mv("./public/admin/products/" + id + ".jpg");
+        
         res.redirect("/admin/product");
       } else {
+        
         res.redirect("/admin/product");
       }
     } catch (error) {
