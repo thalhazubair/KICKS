@@ -314,10 +314,11 @@ module.exports = {
 
   editProduct: async (req, res) => {
     try {
-      const id = req.params.name;
+      const id = req.params.id;
       console.log(id);
       const categoriesData = await category.find();
-      const productData = await product.findOne({ name: id });
+      const productData = await product.findOne({ _id: id });
+      console.log(productData);
       if (productData) {
         
         res.render("admin/editProduct", { productData, categoriesData });
@@ -354,10 +355,10 @@ module.exports = {
 
   postupdateProduct: async (req, res) => {
     try {
-      const id = req.params.name;
+      const id = req.params.id;
       await product
         .updateOne(
-          { name: id },
+          { _id: id },
           {
             $set: {
               name: req.body.name,
