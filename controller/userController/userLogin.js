@@ -520,7 +520,7 @@ module.exports = {
               const sum = allProduct.reduce((accumulator, object) => {
                 return accumulator + object.productPrice;
               }, 0);
-              count = allProduct.length;
+              count = allProduct.length;  
               res.render("user/cart", {
                 allProduct,
                 count,
@@ -548,6 +548,8 @@ module.exports = {
 
         if (data.count == 1 && data.quantity == productDetail.stock) {
           res.json({ stock: true });
+        } else if(data.count == -1 && data.quantity == 1){
+          res.json({ quantity: true })
         } else {
            cart
             .aggregate([

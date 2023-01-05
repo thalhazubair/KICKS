@@ -216,34 +216,7 @@ function removewishlistProduct(wishlistId, productId) {
         })
       }
 
-      function changeQuantity(cartId,proId,count){
-            
-        let quantity = parseInt(document.getElementById(proId).innerHTML);
-        console.log(quantity+"dsfsdf");
-        $.ajax({
-            url:'/changeQuantity',
-            data:{
-                cart:cartId,
-                product:proId,
-                count:count,
-                quantity: quantity
-            },
-            method:'post',
-            success:(response)=>{
-                if (response.status){
-                document.getElementById(proId).innerHTML = quantity + count;
-               
-                } if (response.stock) {
-                    Swal.fire({
-                        title: "OOPs..Stock Out!",
-                        icon: "error",
-                        confirmButtonText: "continue",
-                    })
-                }
-            },
-        })
-    }
-
+      
     function removeProduct(cartId, productId) {
         $.ajax({
           url: "/removeProduct",

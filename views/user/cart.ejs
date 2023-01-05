@@ -59,11 +59,11 @@
                                     <td class="quantity__item">
                                         <div class="quantity">  
                                             <div class="container">
-                                                <% if (product.productQuantity > 1) { %>
-                                                <input type="button" class="mx-1" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
-                                                <% } else { %>
-                                                    <input type="button" disabled class="mx-1" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
-                                                    <% } %>
+                                                
+                                               
+                                                    
+                                                    <input type="button" class="mx-1" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',-1)" value="-" min="1"/>
+                                                  
                                                     <p id="<%= product.productDetail._id %>" min="0" name="quantity"> <%= product.productQuantity%> </p>
                                                 <input type="button" onclick="changeQuantity('<%= product._id %>','<%= product.productDetail._id %>',1)" value="+" min="1"/>
                                                 </div>
@@ -103,5 +103,43 @@
     <% } %>
     <!-- Shopping Cart Section End -->
     
+
+<script>
+    function changeQuantity(cartId, proId, count) {
+
+        let quantity = parseInt(document.getElementById(proId).innerHTML);
+
+        $.ajax({
+            url: '/changeQuantity',
+            data: {
+                cart: cartId,
+                product: proId,
+                count: count,
+                quantity: quantity
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    document.getElementById(proId).innerHTML = quantity + count;
+
+                } if (response.quantity) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Minimum One required!",
+                    });
+                }
+                if (response.stock) {
+                    Swal.fire({
+                        title: "OOPs..Stock Out!",
+                        icon: "error",
+                        confirmButtonText: "continue",
+                    })
+                }
+            },
+        })
+    }
+
+</script>
 
     <%- include('../partials/user_footer.ejs') %>
