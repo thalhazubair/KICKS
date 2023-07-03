@@ -174,14 +174,11 @@ module.exports = {
   blockuser: async (req, res) => {
     try {
       const id = req.params.id;
-      console.log(id);
       User.updateOne({ _id: id }, { $set: { isBlocked: true } }).then((data) => {
         if(data){
             const findBlocked = Session.find({userId :mongoose.Types.ObjectId(id)})
-            console.log(findBlocked);
             if(findBlocked){
-              Session.deleteMany({ userId: mongoose.Types.ObjectId(id)}).then((data)=>{
-                console.log(data);
+              Session.deleteMany({ userId: mongoose.Types.ObjectId(id)}).then(()=>{
               })
               res.redirect("/admin/table");
             }
@@ -315,10 +312,8 @@ module.exports = {
   editProduct: async (req, res) => {
     try {
       const id = req.params.id;
-      console.log(id);
       const categoriesData = await category.find();
       const productData = await product.findOne({ _id: id });
-      console.log(productData);
       if (productData) {
         
         res.render("admin/editProduct", { productData, categoriesData });
@@ -335,7 +330,6 @@ module.exports = {
     try {
       const id = req.params.id;
       const objId = mongoose.Types.ObjectId(id);
-      console.log(objId);
       product.updateOne({ _id: id }, { $set: { isDeleted: true } }).then(() => {
         cart
           .updateMany(
@@ -343,8 +337,8 @@ module.exports = {
             { $pull: { cart: { productId: objId } } },
             { multi: true }
           )
-          .then((data) => {
-            console.log(data);
+          .then(() => {
+            
             res.redirect("/admin/product");
           });
       });
@@ -371,8 +365,8 @@ module.exports = {
             },
           }
         )
-        .then((data) => {
-          console.log(data);
+        .then(() => {
+          
         });
 
         if (req && req.files && req.files.image) {

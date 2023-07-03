@@ -19,7 +19,7 @@ module.exports={
                 subject: "KICKS ACCOUNT REGISTRATION",
                 html: `<p>YOUR OTP FOR REGISTERING IN KICKS IS ${mailer.OTP}</p>`,
               };
-              console.log("ivida");
+              
               if(userdata.password === userdata.confirmpassword){
                 User.find({ $or:[{email:userdata.email},{number:userdata.number}]})
                 .then((result)=>{
@@ -52,10 +52,9 @@ module.exports={
         try{
             const userdata = req.body
             let otp = req.body.otp;
-            console.log(otp);
-            console.log(mailer.OTP);
+            
             if(mailer.OTP == otp){
-                console.log(userdata);
+                
                await bcrypt.hash(userdata.password, 10).then((password)=>{
                 
                     const user = new User({

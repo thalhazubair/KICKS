@@ -669,8 +669,8 @@ module.exports = {
           { _id: data.wishlist, "product.productId": objId },
           { $pull: { product: { productId: objId } } }
         )
-        .then((data) => {
-          console.log(data);
+        .then(() => {
+         
           res.json({ status: true });
         });
       })
@@ -1010,7 +1010,7 @@ module.exports = {
 
      
     } catch (error) {
-      console.log(error);
+      
       res.render("user/404");
     }
   },
@@ -1116,7 +1116,7 @@ module.exports = {
                           { couponName: data.couponName },
                           { $push: { users: { userId: userData._id } } }
                         );
-                        console.log("Cod payment");
+                        
                         res.json({ success: true });
                       } else if (data.paymentMethod === "Online") {
                         let options = {
@@ -1127,17 +1127,17 @@ module.exports = {
                         instance.orders.create(options, function (err, order) {
                           if (err) {
                             console.log(err);
-                            console.log("online payment error");
+                            
                           } else {
                             res.json(order);
-                            console.log("online payment");
+                            
                             coupon
                               .updateOne(
                                 { couponName: data.couponName },
                                 { $push: { users: { userId: userData._id } } }
                               )
-                              .then((updated) => {
-                                console.log(updated);
+                              .then(() => {
+                                
                               });
                           }
                         });
@@ -1155,8 +1155,8 @@ module.exports = {
                               stock: updatedStock,
                             }
                           )
-                          .then((data) => {
-                            console.log(data);
+                          .then(() => {
+                            
                           });
                       }
                     })
@@ -1174,7 +1174,7 @@ module.exports = {
   postverifyPayment: async (req, res) => {
     try {
       const details = req.body;
-      console.log(details);
+      
       let hmac = crypto.createHmac("sha256", process.env.KEYSECRET);
       hmac.update(
         details.payment.razorpay_order_id +
@@ -1189,8 +1189,8 @@ module.exports = {
           .then(() => {
             res.json({ success: true });
           })
-          .catch((err) => {
-            console.log(err);
+          .catch(() => {
+            
             res.json({ status: false, err_message: "payment failed" });
           });
       } else {
@@ -1227,7 +1227,7 @@ module.exports = {
   getOrderstatus: async (req, res) => {
     try {
       const message = req.query.message;
-      console.log(message);
+      
       user = req.session.user;
       category.find().then((allCategory) => {
         User.findOne({ email: user }).then((userData) => {
@@ -1323,8 +1323,8 @@ module.exports = {
       User.updateOne(
         { $or: [{ name: data.name }, { number: data.number }] },
         { $set: { primaryaddress: addressObj } }
-      ).then((userdata) => {
-        console.log(userdata);
+      ).then(() => {
+        
         res.redirect("/getprofile");
       });
     } catch (error) {
@@ -1485,9 +1485,6 @@ module.exports = {
                   stock: updatedStock,
                 }
               )
-              .then((data) => {
-                console.log(data);
-              });
           }
           orderdetails
             .updateOne(
@@ -1531,9 +1528,6 @@ module.exports = {
                 .then(() => {
                   res.redirect("/getprofile");
                 })
-                .catch(() => {
-                  console.log("error in Change Password");
-                });
             }
           } else {
             res.render("user/changePassword", {
@@ -1541,9 +1535,6 @@ module.exports = {
             });
           }
         })
-        .catch(() => {
-          console.log("Something wrong");
-        });
     } catch (error) {
       res.render("user/404");
     }
@@ -1573,11 +1564,10 @@ module.exports = {
         subject: "KICKS ACCOUNT VERIFICATION",
         html: `<p>YOUR OTP FOR RESET PASSWORD IS <h1> ${mailer.OTP} <h1> </p>`,
       };
-      mailer.mailTransporter.sendMail(mailDetails, (err, data) => {
+      mailer.mailTransporter.sendMail(mailDetails, (err) => {
         if (err) {
           console.log("error occurs");
         } else {
-          console.log(data);
           res.render("user/resetpassotp", { Data });
         }
       });
@@ -1592,10 +1582,8 @@ module.exports = {
     try {
       let otp = req.body.otp;
       if (mailer.OTP == otp) {
-        console.log("matchedd");
+        
         res.render("user/resetpassword", { data });
-      } else {
-        console.log("error");
       }
     } catch (error) {
       res.render("user/404");
@@ -1616,8 +1604,7 @@ module.exports = {
                 password: newPassword,
               },
             }
-          ).then((data) => {
-            console.log(data);
+          ).then(() => {
             res.redirect("/login");
           });
         }
