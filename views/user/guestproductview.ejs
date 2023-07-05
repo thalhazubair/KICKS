@@ -30,6 +30,16 @@
     <!-- ===============================================-->
     <link href="/user/assets/css/theme.css" rel="stylesheet">
 
+     <!-- Css Styles -->
+     <link rel="stylesheet" href="/user/assets/css/bootstrap.min.css" type="text/css">
+     <!-- <link rel="stylesheet" href="/user/assets/css/font-awesome.min.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/elegant-icons.css" type="text/css"> -->
+     <link rel="stylesheet" href="/user/assets/css/magnific-popup.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/nice-select.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/owl.carousel.min.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/slicknav.min.css" type="text/css">
+     <link rel="stylesheet" href="/user/assets/css/style.css" type="text/css">
+
 
 
   </head>
@@ -46,22 +56,10 @@
           <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
           <div class="collapse navbar-collapse border-top border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/shop">SHOP</a></li>
-              <% allCategory.forEach((categories)=>{ %>
-              <li class="nav-item px-2"><a class="nav-link fw-medium" href="/categoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
-              <%})%>
               <li class="nav-item px-2"><a class="nav-link fw-medium" href="/login">Login</a></li>
 
             </ul>
-            <form class="d-flex"><a class="text-1000" href="/login">
-                <svg class="feather feather-shopping-cart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg></a><a class="text-1000" href="/login">
-                <svg class="feather feather-heart me-3" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg></a></form>
+            
           </div>
         </div>
       </nav>
@@ -73,8 +71,6 @@
               <div class="row">
                   <div class="col-lg-12">
                       <div class="product__details__breadcrumb">
-                          <a href="./index.html">Home</a>
-                          <a href="./shop.html">Shop</a>
                           <span>Product Details</span>
                       </div>
                   </div>
@@ -92,7 +88,7 @@
               </div>
           </div>
       </div>
-      <div class=" product__details__content">
+      <div class="product__details__content">
           <div class="container">
               <div class="row d-flex justify-content-center">
                   <div class="col-lg-8">
@@ -101,16 +97,10 @@
                           <h3>$<%= data.price %></h3>
                           <p><%= data.description %></p>
                           <div class="product__details__option">
-                              <div class="product__details__option__size">
-                                  <span>Size:</span>
-                                  <label for="xxl"><%= data.size %>
-                                      <input type="radio" id="xxl">
-                                  </label>
-                              </div>
                           </div>
                           <div class="product__details__cart__option">
                               
-                              <a><button class="btn btn-dark" onclick="return addToCart('<%= data._id %>')">+ Add To Cart</button></a>
+                              <a href="/login"><button class="btn btn-dark">+ Add To Cart</button></a>
                           </div>
                           <div class="product__details__btns__option">
                               <!-- <a href="#"><i class="fa fa-heart"></i> add to wishlist</a> -->
@@ -119,7 +109,7 @@
                           <div class="product__details__last__option">
                               <h5><span>Guaranteed Safe Checkout</span></h5>
                               
-                              <ul>
+                              <ul class="pt-2">
                                  
                                   <li><span>Categories:</span> <%= data.category%></li>
                                  
@@ -134,56 +124,41 @@
   <!-- Shop Details Section End -->
 
       <!-- Footer Section Begin -->
-      <footer class="footer">
+      <section class="py-0 pt-7" style="background-color: black;">
+
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                            
-                        </div>
-                        <p>The customer is at the heart of our unique business model, which includes design.</p>
-                       
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Company Info</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">About Us</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Affiliate</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Fashion Blogger</a></li>
+              </ul>
             </div>
-          
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Help &amp; Support</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Shipping Info</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Refunds</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">How to Order</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">How to Track</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Size Guides</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Customer Care</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Contact Us</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Payment Methods</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Bonus Point</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </footer>
+        <!-- end of .container-->
+
+      </section>
     <!-- Footer Section End -->
 
 

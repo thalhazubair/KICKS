@@ -3,7 +3,7 @@ const category = require("../../model/admin/category");
 const product = require("../../model/admin/products");
 const moment = require('moment')
 const Excel = require('exceljs');
-const admin = { email: "admin@gmail.com", password: "1100" };
+const admin = { email: "admin@gmail.com"};
 const mongoose = require("mongoose");
 const cart = require("../../model/user/cart");
 const order = require("../../model/user/orderdetails");
@@ -25,7 +25,7 @@ module.exports = {
   },
 
   postHome: (req, res) => {
-    if (req.body.email === admin.email && req.body.password == admin.password) {
+    if (req.body.email === admin.email && req.body.password == process.env.password) {
       req.session.admin = req.body.email;
       res.redirect("/admin/login");
     } else {

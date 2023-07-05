@@ -31,25 +31,25 @@ router.post("/search",verifyLogin.verifyLoginUser,userLogin.Search)
 
 router.get('/wishlist',verifyLogin.verifyLoginUser,userLogin.getWishlist)
 router.get('/addtowishlist/:id',verifyLogin.verifyLoginUser,userLogin.addWishlist)
-router.post("/removewishlistProduct",userLogin.postremovewishlistProduct)
+router.post("/removewishlistProduct",verifyLogin.verifyLoginUser,userLogin.postremovewishlistProduct)
 
 router.get("/checkout",verifyLogin.verifyLoginUser,userLogin.getCheckout)
-router.post("/placeOrder",userLogin.postplaceOrder)
+router.post("/placeOrder",verifyLogin.verifyLoginUser,userLogin.postplaceOrder)
 router.get('/ordersuccess',verifyLogin.verifyLoginUser,userLogin.orderSuccess)
 router.get('/orderdetails',verifyLogin.verifyLoginUser,userLogin.getOrderstatus)
 router.get("/viewOrderProducts/:id",verifyLogin.verifyLoginUser,userLogin.viewOrderProducts)
-router.post('/addNewAddress',userLogin.addNewAddress);
+router.post('/addNewAddress',verifyLogin.verifyLoginUser,userLogin.addNewAddress);
 
-router.post("/verifypayment",userLogin.postverifyPayment)
+router.post("/verifypayment",verifyLogin.verifyLoginUser,userLogin.postverifyPayment)
 
 router.get('/getprofile',verifyLogin.verifyLoginUser,userLogin.getProfile)
 router.post('/addaddress',userLogin.postAddress)
 router.get('/editaccount',verifyLogin.verifyLoginUser,userLogin.getEditAccount)
 router.get('/savedaddress',verifyLogin.verifyLoginUser,userLogin.getsavedaddress)
-router.patch('/editAddress/:id',userLogin.postEditAddress);
-router.get('/deleteaddress/:id',userLogin.deleteAddress);
-router.get('/editaccount',userLogin.editAccount);
-router.post('/postEditAccount',userLogin.postEditAccount);
+router.patch('/editAddress/:id',verifyLogin.verifyLoginUser,userLogin.postEditAddress);
+router.get('/deleteaddress/:id',verifyLogin.verifyLoginUser,userLogin.deleteAddress);
+router.get('/editaccount',verifyLogin.verifyLoginUser,userLogin.editAccount);
+router.post('/postEditAccount',verifyLogin.verifyLoginUser,userLogin.postEditAccount);
 
 
 router.get("/cancelOrder/:id",verifyLogin.verifyLoginUser,userLogin.cancelOrder);

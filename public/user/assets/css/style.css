@@ -1385,7 +1385,7 @@ section{
 .shop__sidebar__categories ul,
 .shop__sidebar__price ul,
 .shop__sidebar__brand ul {
-	height: 140px;
+	height:auto;
 }
 
 .shop__sidebar__categories ul li,
@@ -1397,7 +1397,7 @@ section{
 .shop__sidebar__categories ul li a,
 .shop__sidebar__price ul li a,
 .shop__sidebar__brand ul li a {
-	color: #b7b7b7;
+	color: #9e9494;
 	font-size: 15px;
 	line-height: 32px;
 	-webkit-transition: all, 0.3s;
@@ -1405,11 +1405,11 @@ section{
 	transition: all, 0.3s;
 }
 
-.shop__sidebar__categories ul li a:hover,
+/* .shop__sidebar__categories ul li a:hover,
 .shop__sidebar__price ul li a:hover,
 .shop__sidebar__brand ul li a:hover {
 	color: #111111;
-}
+} */
 
 .shop__sidebar__brand ul {
 	height: auto;
@@ -1538,7 +1538,7 @@ section{
 	color: #ffffff;
 }
 
-.shop__sidebar__accordion .card-heading a:after,
+/* .shop__sidebar__accordion .card-heading a:after,
 .shop__sidebar__accordion .card-heading>a.active[aria-expanded=false]:after {
 	content: "";
 	font-family: "FontAwesome";
@@ -1549,9 +1549,9 @@ section{
 	right: 0;
 	top: 2px;
 	line-height: 20px;
-}
+} */
 
-.shop__sidebar__accordion .card-heading.active a:after {
+/* .shop__sidebar__accordion .card-heading.active a:after {
 	content: "";
 	font-family: "FontAwesome";
 	font-size: 24px;
@@ -1561,7 +1561,7 @@ section{
 	right: 0;
 	top: 2px;
 	line-height: 20px;
-}
+} */
 
 .shop__product__option {
 	margin-bottom: 45px;

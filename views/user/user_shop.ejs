@@ -102,12 +102,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="breadcrumb__text">
-                            <h4>Shopping Cart</h4>
-                            <div class="breadcrumb__links">
-                                <a href="./index.html">Home</a>
-                                <a href="./shop.html">Shop</a>
-                                <span>Shopping Cart</span>
-                            </div>
+                            <h4>Shop</h4>
                         </div>
                     </div>
                 </div>
@@ -137,15 +132,15 @@
                                 <% } %>
                         </div>
                         <div class="shop__sidebar__accordion">
-                            <div class="accordion" id="accordionExample">
+                            <div>
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
+                                        <a>Categories</a>
                                     </div>
-                                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
+                                    <div>
                                         <div class="card-body">
                                             <div class="shop__sidebar__categories">
-                                                <ul class="nice-scroll">
+                                                <ul>
                                                     <% allCategory.forEach((categories)=>{ %>
                                                     <li><a href="/shopcategoryfilter/<%= categories.categories %>"><%= categories.categories %></a></li>
                                                     <%})%>
@@ -156,9 +151,9 @@
                                 </div>
                                 <div class="card">
                                     <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                        <a>Branding</a>
                                     </div>
-                                    <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
+                                    <div>
                                         <div class="card-body">
                                             <div class="shop__sidebar__brand">
                                                 <ul>
@@ -239,55 +234,41 @@
     <!-- Shop Section End -->
     
     <!-- Footer Section Begin -->
-    <footer class="footer">
+    <section class="py-0 pt-7" style="background-color: black;">
+
         <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="footer__about">
-                        <div class="footer__logo">
-                          
-                        </div>
-                        <p>The customer is at the heart of our unique business model, which includes design.</p>
-                       
-                    </div>
-                </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Clothing Store</a></li>
-                            <li><a href="#">Trending Shoes</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Sale</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>Shopping</h6>
-                        <ul>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Payment Methods</a></li>
-                            <li><a href="#">Delivary</a></li>
-                            <li><a href="#">Return & Exchanges</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
-                        <div class="footer__newslatter">
-                            <p>Be the first to know about new arrivals, look books, sales & promos!</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email">
-                                <button type="submit"><span class="icon_mail_alt"></span></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Company Info</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">About Us</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Affiliate</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Fashion Blogger</a></li>
+              </ul>
             </div>
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Help &amp; Support</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Shipping Info</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Refunds</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">How to Order</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">How to Track</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Size Guides</a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-lg-3 mb-3">
+              <h5 class="lh-lg fw-bold" style="color: rgb(241, 232, 232);">Customer Care</h5>
+              <ul class="list-unstyled mb-md-4 mb-lg-0">
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Contact Us</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Payment Methods</a></li>
+                <li class="lh-lg"><a class="text-800 text-decoration-none" href="#!">Bonus Point</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
-    </footer>
+        <!-- end of .container-->
+
+      </section>
     <!-- Footer Section End -->
 
 
