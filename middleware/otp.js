@@ -5,7 +5,7 @@ module.exports={
         service:"gmail",
         auth:{
             user:"thalhaz999@gmail.com",
-            pass:"knifdtxwirbzdncr"
+            pass:"kive lbfu mqty zvha"
         },
     }),
     OTP : `${Math.floor(1000 + Math.random() * 9000)}`,
